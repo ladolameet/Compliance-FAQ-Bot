@@ -67,68 +67,83 @@
     header {
       background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
       color: var(--white);
-      padding: 14px 24px;
-      padding-top: max(14px, env(safe-area-inset-top));
+      padding: 12px 20px;
+      padding-top: max(12px, env(safe-area-inset-top));
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       flex: none;
       z-index: 20;
+      position: relative;
     }
 
     .brand-group {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       min-width: 0;
+      flex: 1 1 auto;
+      overflow: hidden;
     }
 
     .brand-logo {
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
       border-radius: var(--radius-md);
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(255, 255, 255, 0.1));
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.35), rgba(255, 255, 255, 0.1));
       border: 1px solid rgba(255, 255, 255, 0.2);
       display: grid;
       place-items: center;
-      flex: none;
+      flex-shrink: 0;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
+    .brand-meta {
+      min-width: 0;
+      flex: 1 1 auto;
+      overflow: hidden;
+    }
+
     .brand-meta h1 {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 700;
       letter-spacing: -0.01em;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      line-height: 1.25;
+      color: var(--white);
     }
 
-    .brand-meta p {
-      font-size: 0.8rem;
+    .brand-meta p.brand-subtitle {
+      font-size: 0.76rem;
       color: #93c5fd;
       font-weight: 400;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
       margin-top: 1px;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
-      flex: none;
+      gap: 8px;
+      flex-shrink: 0;
     }
 
     .status-badge {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.1);
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 5px 12px;
+      padding: 4px 10px;
       border-radius: var(--radius-full);
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       color: #e2e8f0;
       white-space: nowrap;
     }
@@ -138,6 +153,7 @@
       height: 8px;
       border-radius: 50%;
       background: #94a3b8;
+      flex-shrink: 0;
     }
     .status-dot.online {
       background: #10b981;
@@ -149,31 +165,38 @@
     }
 
     .faq-counter-pill {
-      background: rgba(37, 99, 235, 0.35);
+      background: rgba(37, 99, 235, 0.3);
       border: 1px solid rgba(147, 197, 253, 0.3);
-      padding: 5px 10px;
+      padding: 5px 11px;
       border-radius: var(--radius-full);
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-weight: 600;
       color: #dbeafe;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
     }
 
     .btn-clear {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       color: #f1f5f9;
       padding: 6px 12px;
       border-radius: var(--radius-sm);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       cursor: pointer;
       transition: all 0.15s ease;
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .btn-clear:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.35);
     }
 
     /* Privacy Alert Notice Banner */
@@ -711,12 +734,37 @@
         box-shadow: none;
       }
       header {
-        padding: 12px 16px;
-        padding-top: max(12px, env(safe-area-inset-top));
+        padding: 10px 14px;
+        gap: 10px;
       }
-      .brand-meta p { display: none; }
-      .privacy-notice { padding: 8px 16px; font-size: 0.74rem; }
-      main.chat-area { padding: 16px; gap: 16px; }
+      .brand-group {
+        gap: 10px;
+      }
+      .brand-logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+      }
+      .brand-logo svg {
+        width: 20px;
+        height: 20px;
+      }
+      .brand-meta h1 {
+        font-size: 1rem;
+      }
+      .brand-meta p.brand-subtitle {
+        display: none;
+      }
+      .faq-counter-pill {
+        padding: 4px 8px;
+        font-size: 0.72rem;
+      }
+      .btn-clear {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+      }
+      .privacy-notice { padding: 8px 14px; font-size: 0.74rem; }
+      main.chat-area { padding: 14px; gap: 14px; }
       .cards-grid {
         grid-template-columns: 1fr;
       }
@@ -724,8 +772,49 @@
         max-width: 94%;
       }
       footer.chat-footer {
-        padding: 10px 16px;
+        padding: 10px 14px;
         padding-bottom: max(10px, env(safe-area-inset-bottom));
+      }
+    }
+
+    @media (max-width: 460px) {
+      header {
+        padding: 8px 10px;
+        gap: 8px;
+      }
+      .brand-logo {
+        width: 32px;
+        height: 32px;
+        border-radius: 7px;
+      }
+      .brand-logo svg {
+        width: 16px;
+        height: 16px;
+      }
+      .brand-meta h1 {
+        font-size: 0.88rem;
+        letter-spacing: -0.02em;
+      }
+      .faq-counter-pill {
+        padding: 4px 6px;
+        font-size: 0.68rem;
+      }
+      .btn-clear {
+        padding: 5px 8px;
+        font-size: 0.72rem;
+        gap: 4px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .btn-clear-text {
+        display: none;
+      }
+      .btn-clear {
+        padding: 6px;
+      }
+      .faq-count-icon {
+        display: none;
       }
     }
 
@@ -743,29 +832,28 @@
   <header>
     <div class="brand-group">
       <div class="brand-logo" aria-hidden="true">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           <path d="M9 12l2 2 4-4"/>
         </svg>
       </div>
       <div class="brand-meta">
         <h1>Compliance FAQ Assistant</h1>
-        <p>Your Intelligent Compliance Knowledge Assistant</p>
+        <p class="brand-subtitle">Your Intelligent Compliance Knowledge Assistant</p>
       </div>
     </div>
 
     <div class="header-actions">
-      <div class="status-badge">
-        <span class="status-dot" id="statusDot"></span>
-        <span id="statusText">Checking...</span>
+      <div class="faq-counter-pill" id="faqCountPill" title="Knowledge Base Index Status">
+        <span class="faq-count-icon">📚</span>
+        <span id="faqCountText">58 FAQs</span>
       </div>
-      <div class="faq-counter-pill" id="faqCountPill">– FAQs Loaded</div>
       <button class="btn-clear" id="clearBtn" type="button" title="Clear conversation history">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="3 6 5 6 21 6"></polyline>
           <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
         </svg>
-        Clear
+        <span class="btn-clear-text">Clear</span>
       </button>
     </div>
   </header>
@@ -1326,13 +1414,19 @@
       var res = await fetch("/api/health");
       var data = await res.json();
       var isReady = data.faq_loaded;
-      statusDot.className = "status-dot " + (isReady ? "online" : "offline");
-      statusText.textContent = data.groq_configured ? "AI Online · Ready" : "KB Ready (Offline Mode)";
-      faqCountPill.textContent = (data.faq_count || 0) + " FAQs Loaded";
+      if (statusDot) statusDot.className = "status-dot " + (isReady ? "online" : "offline");
+      if (statusText) statusText.textContent = data.groq_configured ? "AI Online · Ready" : "KB Ready (Offline Mode)";
+      var countText = document.getElementById("faqCountText");
+      if (countText) {
+        countText.textContent = (data.faq_count || 0) + " FAQs";
+      } else if (faqCountPill) {
+        faqCountPill.textContent = (data.faq_count || 0) + " FAQs";
+      }
     } catch(err) {
-      statusDot.className = "status-dot offline";
-      statusText.textContent = "Server Offline";
-      faqCountPill.textContent = "Offline";
+      if (statusDot) statusDot.className = "status-dot offline";
+      if (statusText) statusText.textContent = "Server Offline";
+      var countText = document.getElementById("faqCountText");
+      if (countText) countText.textContent = "Offline";
     }
   }
 
