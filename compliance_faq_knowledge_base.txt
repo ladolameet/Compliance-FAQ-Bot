@@ -1,0 +1,545 @@
+# ==============================================================================
+# COMPLIANCE FAQ KNOWLEDGE BASE
+# Primary verified knowledge base for AI-Powered Compliance FAQ Assistant
+# Topics: GST, TDS, Company (MCA/ROC), KYC & Documentation, General Compliance,
+#         and Insurance & Reinsurance Compliance.
+# ==============================================================================
+
+==========
+FAQ ID: GST-001
+Topic: GST Fundamentals
+Question: What is GST and how does the Indian indirect tax system operate?
+Keywords: gst, goods and services tax, indirect tax, cgst, sgst, igst, dual gst, destination based tax, tax structure
+Answer: Goods and Services Tax (GST) is a destination-based indirect tax levied on the manufacture, sale, and consumption of goods and services throughout India. It subsumed multiple central and state indirect taxes (including Excise Duty, Service Tax, VAT, and CST) into a unified structure under the motto "One Nation, One Tax". India operates a dual GST model where both the Centre and the States simultaneously levy tax on a common taxable base. Intra-state supplies attract Central GST (CGST) and State GST (SGST) or Union Territory GST (UTGST), split equally. Inter-state supplies attract Integrated GST (IGST), collected by the Central Government and apportioned to destination states.
+Source Name: Goods and Services Tax Portal
+Source URL: https://www.gst.gov.in/
+Additional Source URL: https://cbic-gst.gov.in/
+
+==========
+FAQ ID: GST-002
+Topic: GST Registration
+Question: What are the turnover thresholds and criteria for mandatory GST registration?
+Keywords: gst registration, registration threshold, mandatory registration, 40 lakhs, 20 lakhs, casual taxable person, inter state supply, reverse charge, ecommerce
+Answer: GST registration is mandatory for businesses whose aggregate annual turnover exceeds the statutory threshold limit. For suppliers dealing exclusively in goods, the threshold is Rs 40 Lakhs (Rs 20 Lakhs for Special Category States). For service providers and mixed suppliers, the aggregate turnover threshold is Rs 20 Lakhs (Rs 10 Lakhs for Special Category States). Registration is compulsory irrespective of turnover in specific cases: persons making inter-state taxable supplies, casual taxable persons, non-resident taxable persons, persons liable to pay tax under Reverse Charge Mechanism (RCM), e-commerce operators, and persons supplying online information database access or retrieval (OIDAR) services. Application is filed electronically via Form GST REG-01 on the GST portal.
+Source Name: Central Board of Indirect Taxes and Customs (CBIC)
+Source URL: https://cbic-gst.gov.in/
+Additional Source URL: https://www.gst.gov.in/
+
+==========
+FAQ ID: GST-003
+Topic: GSTIN
+Question: What is GSTIN and what is its 15-digit structure?
+Keywords: gstin, gst identification number, 15 digit, state code, pan based, checksum, gst number
+Answer: GSTIN (Goods and Services Tax Identification Number) is a unique 15-character alphanumeric state-wise PAN-based identification number issued to every registered taxpayer. The structure is: the first 2 digits represent the Census State Code (e.g., '07' for Delhi, '27' for Maharashtra); digits 3 to 12 represent the 10-character Permanent Account Number (PAN) of the business entity or proprietor; the 13th digit indicates the entity code (the number of registrations the entity holds in that state, from 1-9 then A-Z); the 14th digit is the default character 'Z'; and the 15th digit is a checksum character used for error detection. The GSTIN must be displayed on business signboards and all tax invoices.
+Source Name: Goods and Services Tax Portal
+Source URL: https://www.gst.gov.in/
+
+==========
+FAQ ID: GST-004
+Topic: GST Returns
+Question: What are regular GST returns and what is the return filing structure?
+Keywords: gst returns, regular returns, gstr filing, compliance calendar, monthly return, quarterly return, qrmp
+Answer: Registered GST taxpayers must periodically file statutory returns detailing outward supplies, inward supplies, input tax credit availed, and net tax paid. Regular taxpayers file Form GSTR-1 (monthly or quarterly under the QRMP scheme) to report outward sales, and Form GSTR-3B (monthly summary return) to declare summary tax liabilities and claim Input Tax Credit (ITC). Small taxpayers with annual turnover up to Rs 5 Crore may opt for the Quarterly Return Monthly Payment (QRMP) scheme. Annual compliance involves Form GSTR-9 (annual return) and GSTR-9C (reconciliation statement for prescribed turnover limits). Failure to file returns on time attracts late fees under Section 47 and mandatory interest on delayed tax payment under Section 50 of the CGST Act.
+Source Name: Goods and Services Tax Portal
+Source URL: https://www.gst.gov.in/
+Additional Source URL: https://cbic-gst.gov.in/
+
+==========
+FAQ ID: GST-005
+Topic: GSTR-1
+Question: What is GSTR-1 and what details must be reported in it?
+Keywords: gstr-1, gstr1, outward supplies, sales return, b2b, b2c, invoice reporting, hsn summary, credit notes
+Answer: GSTR-1 is a mandatory statement of outward supplies of goods and services made by a registered taxpayer during a tax period. It contains invoice-level details of Business-to-Business (B2B) supplies, large inter-state Business-to-Consumer (B2C) sales, summary values of small B2C sales, debit and credit notes issued, zero-rated exports, exempt supplies, and an HSN-wise summary of outward supplies. For monthly filers, GSTR-1 is due by the 11th of the following month; under the QRMP scheme, quarterly GSTR-1 or the optional Invoice Furnishing Facility (IFF) is filed. Invoices uploaded in GSTR-1 auto-populate into the corresponding buyers' Form GSTR-2A and Form GSTR-2B for claiming Input Tax Credit.
+Source Name: Goods and Services Tax Portal
+Source URL: https://www.gst.gov.in/
+
+==========
+FAQ ID: GST-006
+Topic: GSTR-3B
+Question: What is GSTR-3B and how is tax liability discharged?
+Keywords: gstr-3b, gstr3b, summary return, tax payment, electronic cash ledger, electronic credit ledger, tax discharge
+Answer: GSTR-3B is a monthly self-assessed summary return in which registered regular taxpayers summarize their total taxable outward supplies, reverse charge inward supplies, eligible and ineligible Input Tax Credit (ITC) availed, and compute net tax liability. After setting off available ITC balances in the Electronic Credit Ledger in the legally prescribed order (IGST first against IGST, then CGST/SGST; followed by CGST/SGST credits), any remaining tax dues must be discharged by depositing cash into the Electronic Cash Ledger via challan (PMT-06). GSTR-3B is typically due by the 20th of the subsequent month for monthly filers (or 22nd/24th for QRMP quarterly filers). GSTR-3B cannot be revised once filed.
+Source Name: Goods and Services Tax Portal
+Source URL: https://www.gst.gov.in/
+
+==========
+FAQ ID: GST-007
+Topic: Input Tax Credit
+Question: What is Input Tax Credit (ITC) and what are the essential conditions to claim it?
+Keywords: input tax credit, itc, gstr-2b, section 16, eligible itc, blocked credit, section 17(5), tax invoice, payment within 180 days
+Answer: Input Tax Credit (ITC) allows a registered taxpayer to deduct the GST paid on business purchases and expenses from the output GST liability due on sales, thereby eliminating the cascading effect (tax on tax). Under Section 16 of the CGST Act, four key statutory conditions must be satisfied: 1) The buyer possesses a valid tax invoice or debit note issued by a registered supplier; 2) The goods or services have been received; 3) The supplier has reported the invoice in GSTR-1 and it appears in the buyer's auto-generated Form GSTR-2B; 4) The supplier has actually paid the tax to the government and filed GSTR-3B; and 5) The recipient pays the supplier the invoice value and tax within 180 days from the invoice date. Certain goods and services (e.g., motor vehicles for personal use, food and beverages, club memberships) are blocked from ITC under Section 17(5).
+Source Name: Central Board of Indirect Taxes and Customs (CBIC)
+Source URL: https://cbic-gst.gov.in/
+Additional Source URL: https://www.gst.gov.in/
+
+==========
+FAQ ID: GST-008
+Topic: GST Invoices
+Question: What are the mandatory particulars required on a valid GST tax invoice?
+Keywords: gst invoice, tax invoice, mandatory invoice fields, hsn code, invoice rules, e-invoice, irn, qr code
+Answer: Under Rule 46 of the CGST Rules, a tax invoice issued by a registered taxpayer must contain specific mandatory elements: 1) Name, address, and GSTIN of the supplier; 2) A consecutive unique serial number (up to 16 characters); 3) Date of invoice issue; 4) Name, address, and GSTIN/UIN of the recipient if registered; 5) Harmonised System of Nomenclature (HSN) or SAC code of goods/services; 6) Description, quantity, unit, and total taxable value of the goods or services; 7) Tax rates applicable and the breakdown of CGST, SGST, IGST, and Cess; 8) Place of supply along with the name of the destination state; 9) Delivery address if different from place of supply; 10) Whether tax is payable on reverse charge; and 11) Signature or digital signature of the supplier. For businesses covered under mandatory e-invoicing thresholds, the Invoice Reference Number (IRN) and signed QR code generated via the Invoice Registration Portal (IRP) are compulsory.
+Source Name: Goods and Services Tax Portal
+Source URL: https://www.gst.gov.in/
+
+==========
+FAQ ID: GST-009
+Topic: E-way Bills
+Question: When is an E-way bill required under GST and who is responsible for generating it?
+Keywords: e-way bill, eway bill, ewb, goods movement, consignment value, 50000 threshold, transporter, eway bill portal
+Answer: An Electronic Way Bill (E-way bill) is an electronic document generated on the e-way bill portal (ewaybillgst.gov.in) evidencing the movement of goods. Under Rule 138 of the CGST Rules, an e-way bill is mandatory for any movement of goods in a vehicle where the consignment value exceeds Rs 50,000 (whether for supply, inter-branch transfer, or inward supply from an unregistered person). Some states prescribe higher thresholds for purely intra-state movements. Part-A of the e-way bill captures GSTIN of supplier and recipient, place of delivery, invoice number, value, and HSN code; Part-B captures vehicle number and transporter details. The registered consignor, consignee, or the transporter is legally responsible for generating the e-way bill prior to commencement of transportation.
+Source Name: National Informatics Centre (E-Way Bill System)
+Source URL: https://ewaybillgst.gov.in/
+Additional Source URL: https://www.gst.gov.in/
+
+==========
+FAQ ID: GST-010
+Topic: GST Reconciliation
+Question: What is GST reconciliation and why must taxpayers reconcile GSTR-2B with books of accounts?
+Keywords: gst reconciliation, gstr-2b reconciliation, purchase register, itc mismatch, rule 37a, vendor follow up, audit trail
+Answer: GST reconciliation is the systematic verification process of matching purchase invoices recorded in the company's internal books of accounts (Purchase Register) with the input tax details auto-populated in Form GSTR-2B on the GST portal. This exercise is critical because taxpayers can legally claim ITC only for invoices reflecting in GSTR-2B that were timely reported and paid by their suppliers. Reconciliation identifies missing vendor invoices, incorrect GSTINs, calculation discrepancies, duplicate ITC claims, and unfiled vendor returns. Regular monthly reconciliation protects the business against ITC reversals, punitive interest, notice issuances under Rule 37A or Section 73/74, and vendor non-compliance risks.
+Source Name: Goods and Services Tax Portal
+Source URL: https://www.gst.gov.in/
+
+==========
+FAQ ID: TDS-001
+Topic: TDS Fundamentals
+Question: What is Tax Deducted at Source (TDS) and what is its objective?
+Keywords: tds, tax deducted at source, income tax act, direct tax, withholding tax, advance tax collection, tax evasion prevention
+Answer: Tax Deducted at Source (TDS) is a direct taxation mechanism under the Indian Income Tax Act, 1961, whereby the person or entity making specified payments (such as salary, professional fees, contractor payments, commission, rent, interest) is legally required to deduct a predetermined percentage of tax before disbursing the net payment to the recipient (payee). The deducted amount is remitted directly to the Central Government on behalf of the payee. The objective of TDS is to collect income tax at the source of income generation ("pay as you earn"), maintain a regular inflow of cash to the national exchequer, widen the tax base, and establish a digital audit trail to prevent tax evasion.
+Source Name: Income Tax Department of India
+Source URL: https://www.incometax.gov.in/
+
+==========
+FAQ ID: TDS-002
+Topic: TDS Applicability
+Question: What types of payments are subject to TDS under the Income Tax Act?
+Keywords: tds applicability, tds sections, section 192, section 194c, section 194j, section 194i, section 194h, section 194q, professional fees, contractor, rent
+Answer: TDS applies to specific categories of payments made by individuals, firms, and companies exceeding prescribed statutory thresholds during a financial year. Major sections include: Section 192 (Salaries), Section 194A (Interest other than securities), Section 194C (Payments to contractors and sub-contractors), Section 194H (Commission or brokerage), Section 194I (Rent on land, buildings, plant, or machinery), Section 194J (Fees for professional or technical services and royalty), Section 194Q (TDS on purchase of goods exceeding Rs 50 Lakhs), and Section 195 (Payments to non-residents). The deductor must verify applicability, determine the appropriate section and rate, and ensure timely deduction.
+Source Name: Income Tax Department of India
+Source URL: https://www.incometax.gov.in/
+
+==========
+FAQ ID: TDS-003
+Topic: TDS Deductions and TAN
+Question: What is a TAN and who is required to obtain it for TDS compliance?
+Keywords: tan, tax deduction account number, 10 digit, mandatory tan, section 203a, deductor identification, nsdl, protean
+Answer: TAN (Tax Deduction and Collection Account Number) is a 10-digit alphanumeric number allotted by the Income Tax Department under Section 203A of the Income Tax Act to persons responsible for deducting or collecting tax at source. The structure consists of 4 alphabetic characters (first three represent the jurisdiction code, the fourth is the initial letter of deductor's name), followed by 5 numeric digits and 1 alphabetic check digit (e.g., DELA12345B). Every deductor is legally required to quote their TAN in all TDS challans, TDS quarterly returns, and TDS certificates (Form 16/16A). Failure to apply for a TAN or failure to quote TAN attracts a statutory penalty of Rs 10,000 under Section 272BB.
+Source Name: Income Tax Department of India
+Source URL: https://www.incometax.gov.in/
+Additional Source URL: https://www.protean-tinpan.com/
+
+==========
+FAQ ID: TDS-004
+Topic: TDS Deposits
+Question: How and when must deducted TDS be deposited with the Central Government?
+Keywords: tds deposit, due date, 7th of next month, challan itns 281, bsr code, tin nsdl, late payment interest, section 201
+Answer: TDS deducted during any calendar month must be deposited with the Central Government on or before the 7th day of the immediately following month (e.g., TDS deducted in October must be paid by November 7th). An exception exists for the month of March, where the payment deadline is extended to April 30th. Payments are made electronically through the Income Tax e-filing portal using Challan ITNS 281. Challans generate a Challan Identification Number (CIN) comprising the BSR code of the receiving bank branch, payment date, and challan serial number. Failure to deposit deducted tax attracts mandatory interest at 1.5% per month (or part of a month) under Section 201(1A) from the date of deduction to the date of actual deposit.
+Source Name: Income Tax Department of India
+Source URL: https://www.incometax.gov.in/
+
+==========
+FAQ ID: TDS-005
+Topic: TDS Returns
+Question: What are quarterly TDS returns and what forms must be filed?
+Keywords: tds returns, quarterly return, form 24q, form 26q, form 27q, form 27eq, tcs, section 200, late filing fee, section 234e
+Answer: Every entity that has deducted TDS must file a quarterly TDS statement with the Income Tax Department under Section 200(3). The statutory forms are: Form 24Q for TDS on salary payments; Form 26Q for TDS on non-salary payments made to resident Indians (contractors, rent, professionals, interest); Form 27Q for payments made to non-residents; and Form 27EQ for Tax Collected at Source (TCS). The quarterly filing due dates are: Q1 (April-June) due by July 31; Q2 (July-September) due by October 31; Q3 (October-December) due by January 31; and Q4 (January-March) due by May 31. Late filing of TDS returns attracts a non-negotiable fee of Rs 200 per day under Section 234E until the return is submitted, capped at the total TDS amount.
+Source Name: TRACES Portal (TDS Reconciliation Analysis and Correction Enabling System)
+Source URL: https://www.tdscpc.gov.in/
+Additional Source URL: https://www.incometax.gov.in/
+
+==========
+FAQ ID: TDS-006
+Topic: Form 16
+Question: What is Form 16 and when must an employer issue it to an employee?
+Keywords: form 16, salary tds certificate, part a, part b, employer, income from salary, section 203, traces, june 15
+Answer: Form 16 is an annual certificate of tax deduction issued under Section 203 of the Income Tax Act by an employer to an employee whose income from salary was subjected to TDS under Section 192. It comprises two parts: Part A is generated and downloaded from the government TRACES portal, containing deductor and employee details, TAN, PAN, and quarterly TDS deposit summaries with challan CINs; Part B is prepared by the employer, containing a detailed breakdown of gross salary, exempt allowances under Section 10, deductions under Chapter VI-A (Sections 80C, 80D, etc.), and net tax calculation. Form 16 must be issued to the employee annually on or before June 15 following the financial year.
+Source Name: TRACES Portal (Income Tax Department)
+Source URL: https://www.tdscpc.gov.in/
+
+==========
+FAQ ID: TDS-007
+Topic: Form 16A
+Question: What is Form 16A and how does it differ from Form 16?
+Keywords: form 16a, non salary tds certificate, quarterly certificate, professional fees, contract payment, interest, traces
+Answer: Form 16A is a quarterly TDS certificate issued under Section 203 for tax deductions made on payments other than salary (covered under sections such as 194A, 194C, 194H, 194I, 194J, and 194Q). While Form 16 is issued annually exclusively by employers to salaried employees, Form 16A is issued on a quarterly basis by any deductor to vendors, contractors, landlords, and professionals. Form 16A must be downloaded strictly from the TRACES portal after the deductor files their quarterly Form 26Q statement. It must be provided to the payee within 15 days from the due date of filing the relevant quarterly TDS return.
+Source Name: TRACES Portal (Income Tax Department)
+Source URL: https://www.tdscpc.gov.in/
+
+==========
+FAQ ID: TDS-008
+Topic: Form 26AS
+Question: What is Form 26AS and how is it used to verify tax credits?
+Keywords: form 26as, annual tax credit statement, traces, e-filing portal, tax paid, tds credit, advance tax, self assessment tax
+Answer: Form 26AS is an annual consolidated tax credit statement linked to a taxpayer's PAN, viewable and downloadable via the Income Tax e-filing portal or TRACES. It reflects: 1) Details of tax deducted at source (TDS) by various payers on behalf of the taxpayer; 2) Details of tax collected at source (TCS); 3) Advance tax and self-assessment tax paid directly by the taxpayer; 4) Details of income tax refunds received during the financial year; and 5) High-value financial transactions reported under the Statement of Financial Transactions (SFT). Taxpayers use Form 26AS to cross-check that all taxes deducted by their employers and clients have been successfully credited to their PAN before filing their Income Tax Return (ITR).
+Source Name: Income Tax Department of India
+Source URL: https://www.incometax.gov.in/
+Additional Source URL: https://www.tdscpc.gov.in/
+
+==========
+FAQ ID: TDS-009
+Topic: AIS and TIS
+Question: What is the Annual Information Statement (AIS) and how does it relate to TDS?
+Keywords: ais, tis, annual information statement, tax information summary, comprehensive financial reporting, sft, dividends, feedback
+Answer: The Annual Information Statement (AIS) is a comprehensive financial information ledger introduced by the Income Tax Department that provides an expanded view beyond Form 26AS. While Form 26AS focuses primarily on TDS, TCS, and tax payments, AIS captures wide-ranging financial data including savings account interest, recurring and fixed deposit interest, stock market transactions, mutual fund sales and purchases, dividend payouts, foreign remittances, and rent receipts. AIS also features Taxpayer Information Summary (TIS), which summarizes aggregate values under each category for effortless ITR pre-filling. Crucially, taxpayers can submit online feedback within AIS if any reported transaction is duplicate, incorrect, or belongs to another entity.
+Source Name: Income Tax Department of India
+Source URL: https://www.incometax.gov.in/
+
+==========
+FAQ ID: TDS-010
+Topic: TDS Mismatches
+Question: How should TDS mismatches between Form 26AS/AIS and financial records be resolved?
+Keywords: tds mismatch, 26as mismatch, rectification, correction return, pan error, deductor rectification, traces correction
+Answer: A TDS mismatch occurs when tax deducted from a payee's income is not reflected or is reflected with a lower amount in their Form 26AS or AIS. This typically happens due to: the deductor failing to file their TDS return; quoting an incorrect PAN; depositing tax under an erroneous TAN or challan CIN; or entering incorrect payment amounts. To resolve a mismatch: 1) The payee should verify deduction certificates (Form 16/16A) against bank statements; 2) The payee must notify the deductor and request them to verify their filed Form 24Q/26Q; 3) The deductor must file an online TDS Correction Return on TRACES to rectify the PAN, challan, or amount error; and 4) Once processed by TRACES, the updated credit reflects in the payee's Form 26AS, allowing them to claim full credit without tax demand notices.
+Source Name: TRACES Portal (Income Tax Department)
+Source URL: https://www.tdscpc.gov.in/
+
+==========
+FAQ ID: MCA-001
+Topic: MCA Fundamentals
+Question: What is the Ministry of Corporate Affairs (MCA) and what is the MCA21 portal?
+Keywords: mca, ministry of corporate affairs, mca21, companies act 2013, e-governance, digital corporate compliance, v3 portal
+Answer: The Ministry of Corporate Affairs (MCA) is the apex Government of India ministry responsible for administering corporate law, primarily the Companies Act, 2013, the Limited Liability Partnership Act, 2008, the Insolvency and Bankruptcy Code (IBC), and related statutes. The MCA regulates corporate affairs through its field offices: Regional Directorates (RDs), Registrars of Companies (ROCs), and Official Liquidators (OLs). MCA21 is the flagship e-governance initiative and public portal that enables complete electronic registration, statutory filing, director identification, public inspection of corporate records, and compliance oversight for all registered companies and LLPs in India.
+Source Name: Ministry of Corporate Affairs (MCA)
+Source URL: https://www.mca.gov.in/
+
+==========
+FAQ ID: MCA-002
+Topic: ROC Functions
+Question: What is the role and statutory jurisdiction of the Registrar of Companies (ROC)?
+Keywords: roc, registrar of companies, jurisdiction, incorporation, statutory filings, roc inspection, corporate records
+Answer: The Registrar of Companies (ROC) is the statutory authority appointed under Section 396 of the Companies Act, 2013, holding regional administrative jurisdiction over companies and LLPs registered within their respective State or Union Territory. Key functions of the ROC include: vetting and registering company incorporation and LLP formation documents; issuing Certificates of Incorporation; administering ongoing compliance forms; recording changes in directors, registered office, and share capital; registering mortgages and charges on company assets; conducting inspections and inquiries into company records; and striking off non-functioning shell companies from the Register under Section 248.
+Source Name: Ministry of Corporate Affairs (MCA)
+Source URL: https://www.mca.gov.in/
+
+==========
+FAQ ID: MCA-003
+Topic: ROC Annual Filings
+Question: What are ROC annual statutory filings (Form AOC-4 and Form MGT-7)?
+Keywords: roc annual filing, aoc-4, mgt-7, mgt-7a, financial statements, annual return, balance sheet, agm, 30 days, 60 days
+Answer: Every company registered in India must complete annual statutory filings with the ROC via the MCA portal following the conclusion of its Annual General Meeting (AGM). The two primary forms are: 1) Form AOC-4 (for filing financial statements, Balance Sheet, Profit and Loss Account, Directors' Report, and Auditor's Report), due within 30 days of the AGM; and 2) Form MGT-7 or MGT-7A (for filing the company's Annual Return covering shareholding patterns, indebtedness, directors, and board meetings), due within 60 days of the AGM. For companies holding AGMs by September 30, AOC-4 is due by October 30 and MGT-7 by November 29. Late filing attracts an additional fee of Rs 100 per day per form under Section 403, and persistent default risks director disqualification.
+Source Name: Ministry of Corporate Affairs (MCA)
+Source URL: https://www.mca.gov.in/
+
+==========
+FAQ ID: MCA-004
+Topic: Company Registration
+Question: What is the procedure for company incorporation in India using SPICe+?
+Keywords: company registration, incorporation, spice+, spice plus, part a, part b, certificate of incorporation, agile pro, moa, aoa
+Answer: Company incorporation in India is executed entirely online through the MCA21 portal using the integrated SPICe+ (Simplified Proforma for Incorporating Company Electronically Plus) form. SPICe+ has two parts: Part A is reserved for name reservation and approval by the Central Registration Centre (CRC); Part B integrates 10 services in a single workflow: application for incorporation, allotment of Director Identification Numbers (DIN) for new directors, mandatory PAN and TAN application, EPFO registration, ESIC registration, Profession Tax registration (state-specific), opening of corporate bank account, and optional GSTIN registration (via AGILE-PRO-S). Electronic Memorandum of Association (eMOA - INC-33) and Articles of Association (eAOA - INC-34) are submitted alongside. Upon verification, the Registrar issues the Certificate of Incorporation containing the CIN.
+Source Name: Ministry of Corporate Affairs (MCA)
+Source URL: https://www.mca.gov.in/
+
+==========
+FAQ ID: MCA-005
+Topic: CIN
+Question: What is Corporate Identity Number (CIN) and how is it structured?
+Keywords: cin, corporate identity number, 21 digit, listed unlisted, state code, incorporation year, company classification
+Answer: The Corporate Identity Number (CIN) is a unique 21-digit alphanumeric identity code assigned by the ROC to every company incorporated in India. The 21 characters encode specific legal attributes: Character 1 indicates listing status ('L' for listed, 'U' for unlisted); characters 2 to 6 represent the 5-digit industry classification Economic Activity Code (based on National Industrial Classification - NIC); characters 7 and 8 represent the 2-letter state code of the registered office (e.g., 'MH' for Maharashtra, 'DL' for Delhi); characters 9 to 12 represent the 4-digit year of company incorporation (e.g., '2023'); characters 13 to 15 represent the company ownership classification (e.g., 'PTC' for Private Limited, 'PLC' for Public Limited, 'GOI' for Government of India); and the final 6 digits (16 to 21) are the sequential registration number allotted by the ROC. The CIN must be quoted on all corporate letterheads, invoices, notices, and publications under Section 12(3)(c).
+Source Name: Ministry of Corporate Affairs (MCA)
+Source URL: https://www.mca.gov.in/
+
+==========
+FAQ ID: MCA-006
+Topic: DIN and Director Compliance
+Question: What is Director Identification Number (DIN) and annual DIR-3 KYC compliance?
+Keywords: din, director identification number, dir-3, dir-3 kyc, web kyc, september 30, deactivated din, section 152
+Answer: A Director Identification Number (DIN) is a unique 8-digit identification number allotted by the Ministry of Corporate Affairs under Section 154 of the Companies Act to any individual intending to be appointed as a director in an Indian company. Every DIN holder must complete annual DIR-3 KYC compliance on or before September 30 of each financial year. Individuals filing KYC for the first time or updating personal credentials (phone, email, residential address) must file the detailed e-form DIR-3 KYC with digital signatures and supporting documents. If credentials remain unchanged, the director files the one-click DIR-3 KYC Web service. If KYC is not completed by September 30, the DIN is marked 'Deactivated due to non-filing of DIR-3 KYC' on the MCA portal, preventing the director from signing corporate forms, and reactivation requires payment of a late fee of Rs 5,000.
+Source Name: Ministry of Corporate Affairs (MCA)
+Source URL: https://www.mca.gov.in/
+
+==========
+FAQ ID: MCA-007
+Topic: Director Compliance
+Question: What are director compliance obligations and grounds for disqualification under Section 164?
+Keywords: director compliance, disqualification, section 164(2), 3 years non filing, director duties, section 166, board meetings
+Answer: Directors owe statutory duties under Section 166 of the Companies Act, 2013, including acting in good faith, exercising reasonable care, avoiding conflicts of interest, and ensuring corporate statutory compliance. Under Section 164(2), a director becomes automatically disqualified from being reappointed in that company or appointed to any other company for a period of 5 years if the company: 1) Has not filed financial statements or annual returns for any continuous period of 3 financial years; or 2) Has failed to repay deposits, pay interest, redeem debentures, or pay declared dividends for one year or more. Disqualification leads to automatic vacation of directorship in all other companies under Section 167(1)(a). Directors must also disclose directorships and interests annually in Form MBP-1 and confirm eligibility in Form DIR-8.
+Source Name: Ministry of Corporate Affairs (MCA)
+Source URL: https://www.mca.gov.in/
+
+==========
+FAQ ID: MCA-008
+Topic: Event-Based Filings
+Question: What are event-based filings with the ROC (such as INC-22, DIR-12, PAS-3)?
+Keywords: event based filing, roc forms, inc-22, dir-12, pas-3, registered office change, director change, allotment of shares
+Answer: In addition to annual filings, companies must file event-based forms with the Registrar of Companies whenever significant structural, operational, or managerial changes occur. Common event-based statutory filings include: 1) Form DIR-12 (appointment, resignation, or change in designation of a director or Key Managerial Personnel), due within 30 days; 2) Form INC-22 (notice of change in situation of the registered office), due within 15 to 30 days depending on whether jurisdiction changes; 3) Form PAS-3 (return of allotment of shares following private placement or rights issue), due within 30 days; 4) Form CHG-1/CHG-4 (creation, modification, or satisfaction of corporate charges/loans), due within 30 days; and 5) Form MGT-14 (filing special resolutions passed by shareholders or board), due within 30 days. Failure to file event-based forms on time attracts compounding late fees and invalidates the legal efficacy of the corporate action against third parties.
+Source Name: Ministry of Corporate Affairs (MCA)
+Source URL: https://www.mca.gov.in/
+
+==========
+FAQ ID: MCA-009
+Topic: LLP Compliance
+Question: What are the annual statutory compliance obligations for a Limited Liability Partnership (LLP)?
+Keywords: llp compliance, limited liability partnership, form 11, form 8, annual return, statement of accounts, may 30, october 30
+Answer: Limited Liability Partnerships (LLPs) registered under the LLP Act, 2008, must comply with mandatory annual statutory filings with the ROC via the MCA portal regardless of turnover or business activity: 1) Form 11 (Annual Return of LLP), containing partner details, capital contributions, and summary of management, due within 60 days of the financial year end, i.e., by May 30; and 2) Form 8 (Statement of Account & Solvency), containing balance sheet, income/expenditure statement, and partner solvency declarations, due within 30 days of the end of 6 months of the financial year, i.e., by October 30. An audit of LLP accounts is legally mandatory under Rule 24 of LLP Rules if the LLP's annual turnover exceeds Rs 40 Lakhs or partner contribution exceeds Rs 25 Lakhs.
+Source Name: Ministry of Corporate Affairs (MCA)
+Source URL: https://www.mca.gov.in/
+
+==========
+FAQ ID: MCA-010
+Topic: Statutory Registers
+Question: What statutory registers and minute books must be maintained by an Indian registered company?
+Keywords: statutory registers, minute books, section 88, register of members, register of directors, board minutes, agm minutes, record keeping
+Answer: Under the Companies Act, 2013, every registered company must maintain statutory registers and corporate records at its registered office. Mandatory registers include: Register of Members (Form MGT-1 under Section 88); Register of Debenture Holders (MGT-2); Register of Directors and Key Managerial Personnel (Section 170); Register of Loans, Guarantees, and Securities (Section 186 / Form MBP-2); Register of Contracts in which directors are interested (Section 189 / Form MBP-4); and Register of Charges (Section 85 / Form CHG-7). Furthermore, Section 118 mandates the maintenance of signed Minute Books recording proceedings of all Board Meetings, Committee Meetings, and General Meetings (AGM/EGM), which must be preserved permanently.
+Source Name: Ministry of Corporate Affairs (MCA)
+Source URL: https://www.mca.gov.in/
+
+==========
+FAQ ID: KYC-001
+Topic: KYC Fundamentals
+Question: What is KYC (Know Your Customer) and why is customer verification mandatory?
+Keywords: kyc, know your customer, customer verification, cdd, aml, cft, pmla, prevention of money laundering, financial crime
+Answer: Know Your Customer (KYC) is a regulatory framework and due diligence process mandated by financial and corporate regulators (such as RBI, SEBI, IRDAI, and FIU-India) under the Prevention of Money Laundering Act, 2002 (PMLA) and the Prevention of Money Laundering (Maintenance of Records) Rules, 2005. Its primary purpose is to verify and authenticate the true identity, legal status, and residential/business address of customers before establishing a business relationship or executing high-value transactions. KYC prevents financial institutions, insurers, and corporations from being inadvertently used as conduits for money laundering, terrorist financing, identity theft, bribery, and financial fraud.
+Source Name: Reserve Bank of India (RBI KYC Master Direction)
+Source URL: https://www.rbi.org.in/
+Additional Source URL: https://fiuindia.gov.in/
+
+==========
+FAQ ID: KYC-002
+Topic: Customer Due Diligence
+Question: What is Customer Due Diligence (CDD) and when must it be carried out?
+Keywords: customer due diligence, cdd, client onboarding, identity verification, ongoing diligence, transaction monitoring
+Answer: Customer Due Diligence (CDD) is the operational process through which a regulated entity identifies the client, verifies their identity using reliable and independent official documents, and understands the purpose and nature of the intended business relationship. CDD must be conducted: 1) When establishing a new business relationship (account opening, policy issuance, investment onboarding); 2) When executing occasional transactions exceeding statutory limits; 3) When there is suspicion of money laundering or terrorist financing, irrespective of transaction amount; and 4) When there are doubts regarding the veracity or adequacy of previously collected customer identification data. CDD also requires periodic ongoing monitoring of transactions to ensure alignment with the customer's known risk profile and legitimate source of funds.
+Source Name: Reserve Bank of India (RBI)
+Source URL: https://www.rbi.org.in/
+
+==========
+FAQ ID: KYC-003
+Topic: Officially Valid Documents
+Question: What are Officially Valid Documents (OVDs) for verifying individual customer identity and address?
+Keywords: ovds, officially valid documents, identity proof, address proof, passport, driving licence, aadhaar, voter id, nrega
+Answer: Under Rule 2(1)(d) of the PML Rules and regulatory Master Directions, an Officially Valid Document (OVD) is a government-issued document acceptable for establishing an individual's identity and residential address. The recognized OVDs are: 1) Passport; 2) Driving Licence; 3) Proof of possession of Aadhaar number (in offline verification format or masked Aadhaar showing only last 4 digits); 4) Voter's Identity Card issued by the Election Commission of India; 5) Job card issued by NREGA duly signed by an officer of the State Government; and 6) Letter issued by the National Population Register containing details of name and address. PAN Card is a mandatory tax identifier for financial transactions, but where the PAN does not contain an address, an OVD is required to verify the residential address.
+Source Name: Reserve Bank of India (RBI KYC Master Direction)
+Source URL: https://www.rbi.org.in/
+
+==========
+FAQ ID: KYC-004
+Topic: Corporate KYC
+Question: What documentation is required for verifying corporate entities and legal arrangements?
+Keywords: corporate kyc, company kyc, certificate of incorporation, moa, aoa, board resolution, authorized signatory, power of attorney
+Answer: For onboarding corporate entities, regulated organizations must obtain certified copies of: 1) Certificate of Incorporation issued by the ROC; 2) Memorandum of Association (MOA) and Articles of Association (AOA); 3) Permanent Account Number (PAN) of the company; 4) A valid Board Resolution and Power of Attorney (PoA) granting authority to named managers, officers, or employees to transact on behalf of the company; and 5) Officially Valid Documents (OVDs) and PAN cards of the managers, authorized signatories, and beneficial owners holding controlling ownership. In addition, the company's active status should be corroborated by checking the MCA portal registry.
+Source Name: Reserve Bank of India (RBI KYC Master Direction)
+Source URL: https://www.rbi.org.in/
+Additional Source URL: https://www.mca.gov.in/
+
+==========
+FAQ ID: KYC-005
+Topic: Beneficial Ownership
+Question: What is Ultimate Beneficial Ownership (UBO) and how is a beneficial owner identified?
+Keywords: ubo, beneficial ownership, controlling ownership interest, 10 percent, 15 percent, natural person, pmla rules
+Answer: An Ultimate Beneficial Owner (UBO) is the natural person who ultimately owns, controls, or exercises effective decision-making authority over a customer entity, or on whose behalf a transaction is being conducted. Under the amended PMLA rules, for a corporate entity, a beneficial owner is identified as any natural person who, acting alone or together through one or more juridical persons, holds a controlling ownership interest of more than 10% of shares or capital or profits of the company, or exercises control through management rights. For a partnership firm or LLP, the ownership threshold is more than 10% of capital or profits. For trusts, it includes the author, trustee, beneficiaries with 10% or more interest, and any natural person exercising ultimate control. If no natural person meets the threshold, the senior managing official is designated as the UBO.
+Source Name: Ministry of Finance / Financial Intelligence Unit India (FIU-IND)
+Source URL: https://fiuindia.gov.in/
+Additional Source URL: https://www.rbi.org.in/
+
+==========
+FAQ ID: KYC-006
+Topic: KYC Record-Keeping
+Question: What are the mandatory record-keeping and retention requirements for KYC documentation?
+Keywords: kyc record keeping, retention period, 5 years, pmla section 12, audit trail, regulatory inspection, document preservation
+Answer: Under Section 12 of the Prevention of Money Laundering Act, 2002 (PMLA) read with PML Rules, all reporting entities must maintain records of client identity, account files, and business correspondence for a statutory minimum period of 5 years after the business relationship has ended or the account has been closed, whichever is later. Furthermore, records pertaining to all domestic and international transactions must be maintained for at least 5 years from the date of the transaction. Records may be preserved in physical or secure electronic form provided they are easily retrievable, protected against unauthorized access, and capable of being produced promptly as evidence before investigating authorities and courts.
+Source Name: Financial Intelligence Unit India (FIU-IND)
+Source URL: https://fiuindia.gov.in/
+Additional Source URL: https://www.rbi.org.in/
+
+==========
+FAQ ID: KYC-007
+Topic: Enhanced Due Diligence
+Question: What is Enhanced Due Diligence (EDD) and when is it required?
+Keywords: edd, enhanced due diligence, high risk customers, peps, politically exposed persons, high risk jurisdictions, fatf
+Answer: Enhanced Due Diligence (EDD) is an intensive, rigorous verification and monitoring protocol applied to customers who represent a higher risk of money laundering, corruption, or financial terrorism. EDD is mandatory for: 1) Politically Exposed Persons (PEPs) – individuals entrusted with prominent public functions in India or foreign countries, along with their family members and close associates; 2) Entities operating in high-risk jurisdictions identified by the Financial Action Task Force (FATF) as having deficient AML/CFT regimes; 3) Complex, unusually large transactions with no apparent economic or visible lawful purpose; and 4) High-net-worth individuals with complex corporate holding structures. EDD requires senior management approval prior to onboarding, thorough substantiation of the source of wealth and funds, and frequent continuous transaction reviews.
+Source Name: Financial Action Task Force (FATF)
+Source URL: https://www.fatf-gafi.org/
+Additional Source URL: https://www.rbi.org.in/
+
+==========
+FAQ ID: KYC-008
+Topic: Digital KYC and V-CIP
+Question: What is Video-based Customer Identification Process (V-CIP) and digital KYC?
+Keywords: v-cip, digital kyc, video kyc, paperless onboarding, facial recognition, geotagging, liveness detection, rbi guidelines
+Answer: Video-based Customer Identification Process (V-CIP) is an authorized digital, paperless method permitted by financial and insurance regulators (such as RBI and IRDAI) to perform customer identification and CDD remotely. In V-CIP, an authorized official of the reporting entity conducts a live, real-time, recorded audio-visual interaction with the customer. The process incorporates stringent security checks: artificial intelligence-assisted facial matching, liveness detection to prevent spoofing, geo-tagging to confirm the customer is physically present within Indian territory, and real-time verification of official documents via Digilocker or masked e-Aadhaar and PAN validation with the government database. V-CIP recordings must be securely stored in compliance with statutory data retention guidelines.
+Source Name: Reserve Bank of India (RBI KYC Master Direction)
+Source URL: https://www.rbi.org.in/
+
+==========
+FAQ ID: GEN-001
+Topic: Compliance Fundamentals
+Question: What does corporate compliance mean and why is it essential for organizations?
+Keywords: compliance meaning, corporate compliance, regulatory compliance, legal adherence, business continuity, governance
+Answer: Corporate compliance refers to the comprehensive framework, policies, and operational processes an organization establishes to ensure complete adherence to applicable statutory laws, industry regulations, administrative rules, and internal ethical standards. Compliance is essential because it guarantees legal business continuity, prevents costly litigation, avoids regulatory sanctions, licenses revocation, and financial penalties. Beyond legal defense, a robust compliance culture fosters transparency, protects corporate reputation, builds trust with investors, customers, and business partners, and establishes operational discipline across corporate functions.
+Source Name: Institute of Company Secretaries of India (ICSI)
+Source URL: https://www.icsi.edu/
+
+==========
+FAQ ID: GEN-002
+Topic: Regulatory Compliance
+Question: What is the difference between regulatory compliance and internal compliance?
+Keywords: regulatory compliance, internal compliance, statutory obligations, external laws, code of conduct, company policies
+Answer: Regulatory compliance (external compliance) refers to the mandatory adherence to laws, rules, circulars, and directives enacted by external sovereign bodies and statutory authorities (such as Parliament, MCA, Tax Authorities, RBI, SEBI, IRDAI). Non-compliance with regulatory obligations results in statutory penalties, legal prosecution, or loss of operating licenses. In contrast, internal compliance refers to adherence to self-imposed organizational policies, employee codes of conduct, operational standard operating procedures (SOPs), IT security guidelines, and internal governance mandates designed by management and the Board of Directors. While internal breaches are handled through disciplinary actions, they often serve as the first defense preventing external regulatory breaches.
+Source Name: Institute of Company Secretaries of India (ICSI)
+Source URL: https://www.icsi.edu/
+
+==========
+FAQ ID: GEN-003
+Topic: Corporate Governance
+Question: What are the core pillars of an effective corporate governance framework?
+Keywords: corporate governance, board oversight, transparency, accountability, fairness, stakeholder protection, audit committee
+Answer: Corporate governance is the system of rules, practices, and organizational structures by which companies are directed, administered, and controlled. The core pillars of sound corporate governance are: 1) Accountability – ensuring executive management is answerable to the Board of Directors and shareholders; 2) Transparency – providing timely, accurate, and balanced disclosure regarding financial performance, ownership, and governance; 3) Fairness – treating all shareholders equally, including minority shareholders; 4) Responsibility – acknowledging obligations toward employees, customers, environment, and community; and 5) Board Independence and Oversight – establishing active Board committees, particularly the Audit Committee and Nomination and Remuneration Committee, to safeguard independence.
+Source Name: Ministry of Corporate Affairs (MCA)
+Source URL: https://www.mca.gov.in/
+
+==========
+FAQ ID: GEN-004
+Topic: Internal Controls
+Question: What role do internal controls play in maintaining compliance and mitigating operational risk?
+Keywords: internal controls, internal financial controls, coso framework, risk mitigation, fraud prevention, segregation of duties
+Answer: Internal controls are systematic policies, technical procedures, and supervisory mechanisms implemented by management to provide reasonable assurance regarding: the reliability of financial reporting, compliance with applicable laws, prevention and detection of fraud, and efficiency of operations. Key components (aligned with the COSO framework) include: a strong control environment, risk assessment, control activities (such as segregation of duties, multi-level authorization, physical and logical security), information communication, and continuous monitoring. Under Section 134(5)(e) and Section 143(3)(i) of the Companies Act, directors and statutory auditors must specifically evaluate and report on the adequacy and operating effectiveness of Internal Financial Controls (IFC).
+Source Name: Institute of Chartered Accountants of India (ICAI)
+Source URL: https://www.icai.org/
+
+==========
+FAQ ID: GEN-005
+Topic: Compliance Monitoring
+Question: How do compliance monitoring, regular testing, and compliance audits operate?
+Keywords: compliance monitoring, compliance audit, testing, gap analysis, surveillance, compliance review, compliance dashboard
+Answer: Compliance monitoring is an ongoing supervisory function conducted by the compliance department to track adherence to statutory requirements and internal policies in day-to-day operations. It involves: 1) Surveillance and automated tracking using compliance checklists and compliance dashboards; 2) Sample-based testing of transactions, contracts, and filings to verify control effectiveness; 3) Gap analysis to identify operational deficiencies or newly enacted regulatory amendments; and 4) Independent compliance audits (both internal and external) to independently evaluate the health of the compliance framework. Audit findings are compiled into formal remediation reports submitted to the Audit Committee with prescribed corrective action plans.
+Source Name: Institute of Internal Auditors (IIA)
+Source URL: https://www.theiia.org/
+Additional Source URL: https://www.icsi.edu/
+
+==========
+FAQ ID: GEN-006
+Topic: Compliance Documentation
+Question: What is the importance of compliance documentation and Standard Operating Procedures (SOPs)?
+Keywords: compliance documentation, sop, standard operating procedures, policies, defensibility, process consistency, knowledge management
+Answer: Compliance documentation comprises written policies, Standard Operating Procedures (SOPs), process flowcharts, training manuals, compliance registers, and approval logs. Documented SOPs are crucial because they: 1) Ensure operational consistency and eliminate ambiguity across operational teams; 2) Form the baseline against which internal controls and compliance audits are measured; 3) Provide evidentiary defensibility during regulatory inquiries, proving that reasonable measures were institutionalized to prevent non-compliance; 4) Facilitate business continuity and smooth knowledge transfer during employee turnover; and 5) Embed clear allocation of roles, responsibilities, and supervisory sign-offs.
+Source Name: Institute of Company Secretaries of India (ICSI)
+Source URL: https://www.icsi.edu/
+
+==========
+FAQ ID: GEN-007
+Topic: Audit Trails
+Question: What is an audit trail and why is electronic log preservation vital for compliance audits?
+Keywords: audit trail, edit log, electronic logs, mca audit trail rule, immutable logs, timestamp, compliance verification, section 143
+Answer: An audit trail is a secure, chronological, and tamper-evident digital record that reconstructs the sequence of events and financial/operational activities performed within an IT system. Under the MCA Companies (Accounts) Rules, every company utilizing accounting software for maintaining books of accounts must ensure the software has a built-in feature of recording an audit trail of each and every transaction, creating an edit log of each change made along with the date and timestamp, and ensuring the audit trail cannot be disabled or tampered with. Audit trails are vital because they preserve immutable proof of who initiated, authorized, modified, or deleted an entry, serving as essential evidence for forensic reviews, statutory audits, and regulatory inspections.
+Source Name: Ministry of Corporate Affairs (MCA)
+Source URL: https://www.mca.gov.in/
+Additional Source URL: https://www.icai.org/
+
+==========
+FAQ ID: GEN-008
+Topic: Risk Management
+Question: What is a compliance risk assessment and how are compliance risks managed?
+Keywords: compliance risk assessment, risk matrix, likelihood, impact, risk mitigation, residual risk, heat map
+Answer: A compliance risk assessment is a structured process used to identify, analyze, and prioritize potential regulatory, legal, and operational risks that could result in legal penalties, financial loss, or reputational damage. The methodology involves: 1) Identifying all applicable legal and regulatory obligations across business operations; 2) Evaluating the likelihood of occurrence and potential impact (financial, reputational, legal) on a risk matrix or heat map; 3) Reviewing the effectiveness of existing internal controls to calculate residual risk; 4) Developing targeted risk mitigation strategies (control enhancement, policy updates, technological automation, training); and 5) Continuously reporting high-priority risks to the Board's Risk Management Committee.
+Source Name: Committee of Sponsoring Organizations (COSO)
+Source URL: https://www.coso.org/
+Additional Source URL: https://www.icsi.edu/
+
+==========
+FAQ ID: GEN-009
+Topic: Compliance Reporting and Escalation
+Question: What are compliance reporting mechanisms, whistleblower policies, and escalation procedures?
+Keywords: compliance reporting, whistleblower policy, vigil mechanism, escalation matrix, incident reporting, section 177
+Answer: Compliance reporting mechanisms ensure that critical compliance metrics, audit findings, and potential regulatory breaches are systematically communicated to senior management and the Board of Directors. Under Section 177 of the Companies Act, every listed company and prescribed classes of public companies must establish a Vigil Mechanism / Whistleblower Policy allowing employees and directors to report genuine concerns, unethical behavior, fraud, or compliance violations without fear of retaliation or victimization. An escalation matrix clearly defines the levels of authority, response timelines, and containment steps when an operational defect, data breach, or regulatory non-compliance incident is detected.
+Source Name: Ministry of Corporate Affairs (MCA)
+Source URL: https://www.mca.gov.in/
+
+==========
+FAQ ID: GEN-010
+Topic: Non-Compliance Consequences
+Question: What are the legal, financial, and reputational consequences of non-compliance?
+Keywords: non-compliance, consequences, regulatory sanctions, penalties, compounding, director disqualification, reputational damage
+Answer: The consequences of corporate non-compliance span multiple severe dimensions: 1) Financial penalties – heavy statutory fines, late fees, and compounding charges levied by regulatory bodies; 2) Legal and criminal liabilities – prosecution, imprisonment of 'officers in default', civil lawsuits, and asset attachment; 3) Operational sanctions – revocation or suspension of operating licenses, closure orders, cancellation of registration, and freezing of bank accounts; 4) Managerial disqualification – debarment of directors under Section 164 and disqualification of professional key executives; and 5) Reputational destruction – loss of customer confidence, credit rating downgrades, devaluation of market capitalization, and termination of critical commercial partnerships.
+Source Name: Ministry of Corporate Affairs (MCA)
+Source URL: https://www.mca.gov.in/
+
+==========
+FAQ ID: INS-001
+Topic: Insurance Compliance
+Question: What is insurance compliance and what is the overarching regulatory framework in India?
+Keywords: insurance compliance, irdai, insurance act 1938, irdai regulations, policyholder protection, solvency margin
+Answer: Insurance compliance encompasses the regulatory and statutory mandates governing the establishment, operation, underwriting, product design, financial reporting, and policyholder servicing of insurance and reinsurance entities. In India, the sector is regulated by the Insurance Regulatory and Development Authority of India (IRDAI) under the Insurance Act, 1938, the IRDAI Act, 1999, and comprehensive statutory regulations issued thereunder. The primary objectives of insurance compliance are to safeguard policyholders' interests, maintain systemic financial solvency and market stability, ensure fair and transparent market conduct, enforce stringent anti-fraud and anti-money laundering controls, and ensure prompt settlement of legitimate insurance claims.
+Source Name: Insurance Regulatory and Development Authority of India (IRDAI)
+Source URL: https://www.irdai.gov.in/
+
+==========
+FAQ ID: INS-002
+Topic: Reinsurance Documentation
+Question: What documentation is required for reinsurance contracts (treaties, facultative slips, bordereaux)?
+Keywords: reinsurance documentation, reinsurance treaties, facultative slips, bordereau, treaty wording, cession, retrocession
+Answer: Reinsurance is the transaction whereby an insurer (the ceding company) transfers a portion of its portfolio risk exposure to a reinsurer. Comprehensive documentation is legally vital to evidence the transfer of risk and define contractual obligations: 1) Treaty Agreement & Wording – master legal contract governing an entire class of risks (proportional treaties like quota share and surplus, or non-proportional like excess of loss); 2) Facultative Slip / Cover Note – specific contractual placement document detailing the risk profile, premium rate, deductions, and terms for an individual high-value or unusual risk; 3) Reinsurance Bordereaux – detailed periodic accounting statements (Premium Bordereau and Claims Bordereau) providing risk-by-risk data of cessions, premiums, and paid/outstanding claims; and 4) Retrocession agreements documenting risk transferred by reinsurers to secondary reinsurers.
+Source Name: Insurance Regulatory and Development Authority of India (IRDAI)
+Source URL: https://www.irdai.gov.in/
+
+==========
+FAQ ID: INS-003
+Topic: Policy Documentation
+Question: What are the statutory compliance requirements for insurance policy documentation and endorsements?
+Keywords: policy documentation, policy schedule, policy wordings, terms and conditions, endorsements, warranties, exclusions
+Answer: An insurance policy is a formal contract between the insurer and the policyholder. Statutory compliance rules require clear, standardized, and unambiguous policy documentation consisting of: 1) Policy Schedule – containing specific insured details, period of insurance, sum insured, premium amount, excess/deductibles, and applicable clauses; 2) Policy Wordings – articulating the insuring clause, definitions, operative clauses, covered perils, general exclusions, and general conditions; 3) Warranties and Conditions Precedent – explicit stipulations that must be strictly complied with to maintain coverage; and 4) Endorsements – written amendments agreed upon to modify coverage, alter sums insured, or record changes in risk. Regulators mandate that all policy terms must adhere to filed product guidelines (Use and File / File and Use) and be provided in understandable language to the consumer.
+Source Name: Insurance Regulatory and Development Authority of India (IRDAI)
+Source URL: https://www.irdai.gov.in/
+
+==========
+FAQ ID: INS-004
+Topic: Premium Records and Section 64VB
+Question: What is Section 64VB of the Insurance Act regarding premium collection and risk assumption?
+Keywords: section 64vb, premium payment, advance premium, risk assumption, insurance act 1938, premium reconciliation, no credit
+Answer: Section 64VB of the Insurance Act, 1938, is a cornerstone statutory compliance provision stating that no risk can be assumed by an insurer unless and until the premium has been received in advance or guaranteed in the prescribed manner. Key requirements include: 1) An insurer cannot assume any risk under an insurance contract without upfront receipt of premium by cash, bank guarantee, cheque, or electronic payment; 2) If payment is made by cheque, risk begins only from the date of dispatch of cheque provided it is subsequently honored; 3) If a premium cheque bounces, the insurance cover is ab initio void (invalid from the beginning), and the insurer must immediately notify the insured; and 4) Insurers must maintain rigorous electronic premium reconciliation registers to evidence real-time receipt of premium prior to policy schedule generation.
+Source Name: Insurance Regulatory and Development Authority of India (IRDAI)
+Source URL: https://www.irdai.gov.in/
+
+==========
+FAQ ID: INS-005
+Topic: Claims Documentation
+Question: What are the compliance and documentation standards for insurance claims processing and settlement?
+Keywords: claims documentation, claim settlement, loss assessment, surveyor report, fir, death certificate, claims register, tat
+Answer: Processing and settling insurance claims requires meticulous evidentiary documentation and strict adherence to regulatory turnaround times (TATs) established under Policyholder Protection Regulations. Required documentation includes: 1) Duly completed and signed Claim Form and notice of loss; 2) Primary evidence of loss (e.g., FIR and Final Investigation Report for theft/accidents, Death Certificate and medical records for life/health claims, repair estimates and invoices for property/motor); 3) Independent Surveyor / Loss Assessor Report for claims exceeding prescribed statutory thresholds; 4) KYC documentation of the claimant or nominee; and 5) Discharge voucher evidencing full and final settlement. Insurers must maintain an electronic Claims Register tracking claim registration, loss reserves, survey assignment, queries, approvals, and settlement dates.
+Source Name: Insurance Regulatory and Development Authority of India (IRDAI)
+Source URL: https://www.irdai.gov.in/
+
+==========
+FAQ ID: INS-006
+Topic: Underwriting Risk Documentation
+Question: What risk documentation and underwriting standards must insurance and reinsurance entities maintain?
+Keywords: underwriting documentation, risk assessment, underwriting manual, exposure limits, inspection report, risk register
+Answer: Underwriting compliance ensures that insurance and reinsurance entities accept risks prudently within their regulatory capital limits and approved risk appetite. Key underwriting documentation includes: 1) Board-approved Underwriting Policy and Underwriting Manual setting out risk categories, acceptance limits, exclusions, and delegated financial authority; 2) Completed Proposal Forms and Risk Questionnaires signed by the prospect; 3) Physical Risk Inspection / Engineering Survey Reports for commercial, industrial, or complex infrastructure risks; 4) Underwriting Worksheets documenting pricing rationale, hazard assessment, and risk loading; and 5) Enterprise Risk Register tracking catastrophic exposure, aggregate limits by geographical zone, and accumulation risk across product lines.
+Source Name: Insurance Regulatory and Development Authority of India (IRDAI)
+Source URL: https://www.irdai.gov.in/
+
+==========
+FAQ ID: INS-007
+Topic: Regulatory Reporting in Insurance
+Question: What regulatory reporting and statutory returns must insurance companies submit to the regulator?
+Keywords: regulatory reporting, statutory returns, financial statements, irdai returns, actuarial valuation, quarterly reporting
+Answer: Insurers and reinsurers are subject to extensive statutory reporting to ensure ongoing solvency and market surveillance. Mandatory returns submitted to the IRDAI include: 1) Quarterly Financial Statements prepared in accordance with IRDAI (Preparation of Financial Statements and Auditor's Report of Insurance Companies) Regulations; 2) Solvency Margin Statements (Form IRDAI-Solvency-I/II) certifying capital adequacy and available solvency margin relative to required solvency margin; 3) Actuarial Valuation Reports detailing technical reserves, Incurred But Not Reported (IBNR) reserves, and premium deficiency reserves; 4) Business Performance Returns detailing gross written premium, net retention, and market share; and 5) Grievance Redressal and Public Disclosure statements published on insurers' websites every quarter.
+Source Name: Insurance Regulatory and Development Authority of India (IRDAI)
+Source URL: https://www.irdai.gov.in/
+
+==========
+FAQ ID: INS-008
+Topic: Insurance Due Diligence and AML
+Question: What Customer Due Diligence (CDD) and AML/CFT verification rules apply in insurance policy issuance?
+Keywords: insurance due diligence, aml cft, irdai kyc guidelines, premium threshold, risk categorization, suspicious transaction reporting
+Answer: In accordance with IRDAI Master Guidelines on Anti-Money Laundering (AML) / Counter-Financing of Terrorism (CFT), insurers must conduct thorough customer verification before issuing policies. Key compliance rules include: 1) Mandatory KYC verification for all insurance policies (life, health, general) regardless of premium amount, effective from recent regulatory harmonization; 2) Collection of Officially Valid Documents (OVDs), PAN or Form 60, and photograph; 3) Determination of Ultimate Beneficial Ownership (UBO) for corporate policyholders and group insurance schemes; 4) Risk categorization of policyholders into Low, Medium, and High Risk; and 5) Ongoing surveillance of transactions for early surrender, high cash payments, or unusual offshore beneficiaries, with mandatory filing of Suspicious Transaction Reports (STRs) and Cash Transaction Reports (CTRs) to FIU-India.
+Source Name: Insurance Regulatory and Development Authority of India (IRDAI)
+Source URL: https://www.irdai.gov.in/
+Additional Source URL: https://fiuindia.gov.in/
+
+==========
+FAQ ID: INS-009
+Topic: Insurance Record-Keeping
+Question: What are the mandatory record-keeping and data retention rules for insurance policies and claims?
+Keywords: insurance record keeping, data retention, policy records, claim files, irdai retention guidelines, electronic preservation
+Answer: Insurers and reinsurers must adhere to rigorous statutory record-keeping and archival regulations mandated by the IRDAI and PMLA. Key retention mandates specify: 1) Policy records (including proposals, schedules, endorsements, and customer communications) must be preserved for at least 5 years after the policy has terminated, lapsed, matured, or all liabilities have been fully discharged; 2) Claims documentation (claim forms, surveyor reports, investigation files, settlement records, legal documents) must be retained for at least 5 years from the date of final settlement or rejection, or until the expiry of any related litigation; 3) AML and KYC records must be maintained for at least 5 years after relationship termination; and 4) Records may be archived electronically in immutable, searchable formats ensuring data integrity, confidentiality, and prompt retrieval for regulatory audits.
+Source Name: Insurance Regulatory and Development Authority of India (IRDAI)
+Source URL: https://www.irdai.gov.in/
+
+==========
+FAQ ID: INS-010
+Topic: Solvency Margin
+Question: What is solvency margin compliance and why must insurers and reinsurers monitor capital adequacy?
+Keywords: solvency margin, capital adequacy, available solvency margin, required solvency margin, 1.5 ratio, irdai solvency rules
+Answer: Solvency margin is the statutory capital adequacy buffer that insurers and reinsurers must maintain to ensure that their assets exceed liabilities at all times, guaranteeing financial capacity to absorb unexpected catastrophic claims and financial shocks. Under IRDAI regulations, every insurer must maintain a Minimum Solvency Ratio of 1.50 (150%), calculated as the Available Solvency Margin (ASM) divided by the Required Solvency Margin (RSM). RSM is determined using actuarial valuation based on net premiums and net incurred claims across lines of business. If an insurer's solvency ratio drops below the statutory control level of 1.50, the regulator enforces immediate corrective supervisory measures, including capital infusion directives, underwriting restrictions, or management oversight.
+Source Name: Insurance Regulatory and Development Authority of India (IRDAI)
+Source URL: https://www.irdai.gov.in/
