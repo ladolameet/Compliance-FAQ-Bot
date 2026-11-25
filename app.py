@@ -30,6 +30,9 @@ import gc
 import logging
 import os
 import re
+import threading
+import time
+import urllib.request
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 import numpy as np
@@ -75,9 +78,10 @@ GROQ_TIMEOUT_SECONDS = 25
 MAX_QUESTION_LENGTH = 500
 
 # Scoring Thresholds
-MIN_SCORE_TO_ANSWER = 0.20       # Below this is considered unsupported or unrelated
-HIGH_CONFIDENCE = 0.48
-MEDIUM_CONFIDENCE = 0.28
+MIN_SCORE_TO_ANSWER = 0.18       # Standard threshold
+MIN_SCORE_COMPLIANCE = 0.12      # Dynamic threshold for compliance-domain queries
+HIGH_CONFIDENCE = 0.42
+MEDIUM_CONFIDENCE = 0.24
 MAX_CONTEXT_RECORDS = 3          # Maximum top FAQs provided to Groq
 MIN_SUGGESTION_SCORE = 0.08
 
@@ -127,24 +131,25 @@ SENSITIVE_KEYWORDS = re.compile(r"\b(password|otp|cvv|pin|bank account no|secret
 
 # Comprehensive Compliance Vocabulary for Domain Detection
 COMPLIANCE_TERMS = {
-    # GST
+    # GST & Indirect Taxation
     "gst", "gstin", "cgst", "sgst", "igst", "utgst", "gstr", "gstr1", "gstr-1", "gstr3b", "gstr-3b",
     "gstr9", "gstr-9", "gstr2b", "gstr-2b", "itc", "input tax credit", "e-way", "eway", "tax invoice",
     "hsn", "sac", "reverse charge", "rcm", "composition", "supply", "turnover", "qrmp",
-    # TDS
+    # TDS & Direct Taxation
     "tds", "tax deducted at source", "tcs", "tan", "form 16", "form 16a", "form 26as", "26as", "ais",
     "tis", "form 24q", "form 26q", "form 27q", "challan 281", "itns 281", "withholding tax", "traces",
     "section 192", "section 194c", "section 194j", "section 194i", "section 194h", "section 194q", "deductor", "deductee",
-    # MCA / ROC / Company
+    "advance tax", "tax audit", "section 44ab", "44ab", "section 139", "income tax", "itr", "pan",
+    # MCA / ROC / Company Compliance
     "mca", "roc", "registrar of companies", "companies act", "aoc-4", "aoc4", "mgt-7", "mgt7", "mgt-7a",
     "spice", "spice+", "inc-22", "dir-12", "pas-3", "cin", "din", "dir-3", "dir3", "llp", "form 8",
     "form 11", "annual return", "financial statements", "agm", "egm", "board meeting", "statutory register",
     "minute book", "disqualification", "section 164", "section 166", "incorporation", "memorandum", "articles of association",
-    # KYC
+    # KYC & AML
     "kyc", "know your customer", "cdd", "customer due diligence", "ovd", "officially valid document",
     "beneficial owner", "ubo", "pmla", "anti money laundering", "aml", "cft", "edd", "enhanced due diligence",
     "pep", "politically exposed person", "v-cip", "video kyc", "fiu", "fiu-india", "record keeping", "retention",
-    # General Compliance
+    # General Compliance & Governance
     "compliance", "regulatory", "statutory", "governance", "corporate governance", "internal control",
     "internal financial control", "ifc", "coso", "audit", "auditor", "audit trail", "edit log",
     "sop", "standard operating procedure", "risk assessment", "risk management", "whistleblower",
@@ -154,6 +159,13 @@ COMPLIANCE_TERMS = {
     "bordereaux", "retrocession", "policy schedule", "policy wording", "endorsement", "warranty",
     "premium", "section 64vb", "64vb", "claims", "surveyor", "loss assessor", "sum insured",
     "underwriting", "solvency", "solvency margin", "actuarial", "ibnr", "policyholder",
+    # Labour & Employment Compliance
+    "pf", "epf", "epfo", "provident fund", "esi", "esic", "gratuity", "bonus", "payment of bonus",
+    "payment of gratuity", "labour", "labor", "minimum wages", "posh", "factory act", "factories act",
+    "shops and establishment", "shop and establishment", "professional tax", "labour welfare fund", "lwf",
+    # Securities & FEMA
+    "sebi", "insider trading", "lodr", "listing", "stock exchange", "fema", "foreign exchange",
+    "rbi", "nbfc", "lrs", "ecb", "fdi", "customs", "dgft", "iec"
 }
 
 
@@ -509,6 +521,37 @@ FAQS = load_knowledge_base(KB_PATH)
 RETRIEVER = Retriever(FAQS)
 
 
+# ----------------------------------------------------------------------------
+# Render 24/7 Keep-Alive Daemon (Prevents 15-18 min Inactivity Shutdown)
+# ----------------------------------------------------------------------------
+def render_keep_alive_worker():
+    """
+    Self-ping keep-alive daemon specifically tuned for Render free tier.
+    Pings the server's public endpoint every 12 minutes (720s) to reset
+    the reverse proxy idle timer and prevent sleep/cold start shutdowns.
+    """
+    time.sleep(30)  # Wait for Uvicorn process to complete startup
+    while True:
+        url = os.getenv("RENDER_EXTERNAL_URL", os.getenv("APP_URL", "")).strip()
+        if url:
+            if not url.startswith("http"):
+                url = "https://" + url
+            target = url.rstrip("/") + "/api/health"
+            try:
+                req = urllib.request.Request(
+                    target,
+                    headers={"User-Agent": "RenderKeepAlive/1.0 (ComplianceAssistant)"}
+                )
+                with urllib.request.urlopen(req, timeout=20) as resp:
+                    logger.info("Keep-alive ping sent to %s -> Status %s", target, resp.status)
+            except Exception as e:
+                logger.debug("Keep-alive ping info: %s", e)
+        time.sleep(12 * 60)  # Sleep 12 minutes (safely under 15-18 minute threshold)
+
+
+threading.Thread(target=render_keep_alive_worker, daemon=True, name="RenderKeepAlive").start()
+
+
 class SourceItem(BaseModel):
     faq_id: str
     question: str
@@ -540,6 +583,137 @@ class ChatResponse(BaseModel):
     score: float
     case_type: str
     suggestions: List[str]
+
+
+# ----------------------------------------------------------------------------
+# 5. Extended Regulatory Intelligence & Directory
+# ----------------------------------------------------------------------------
+REGULATORY_DIRECTORIES = [
+    {
+        "keywords": ["pf", "epf", "epfo", "provident fund", "esi", "esic", "gratuity", "bonus", "labour", "wages", "posh", "factory"],
+        "topic": "Labour & Employment Compliance",
+        "name": "Employees' Provident Fund Organisation (EPFO) & ESIC",
+        "url": "https://www.epfindia.gov.in/",
+        "additional_url": "https://www.esic.gov.in/"
+    },
+    {
+        "keywords": ["gst", "gstin", "gstr", "cgst", "sgst", "igst", "e-way", "eway", "itc", "input tax", "hsn", "sac", "composition"],
+        "topic": "GST & Indirect Taxation",
+        "name": "Goods and Services Tax Portal / CBIC",
+        "url": "https://www.gst.gov.in/",
+        "additional_url": "https://cbic-gst.gov.in/"
+    },
+    {
+        "keywords": ["tds", "tcs", "tan", "pan", "income tax", "advance tax", "form 16", "26as", "ais", "tis", "itr", "traces", "section 194", "withholding"],
+        "topic": "Income Tax & Direct Tax Compliance",
+        "name": "Income Tax Department of India (CBDT)",
+        "url": "https://www.incometax.gov.in/",
+        "additional_url": "https://www.tdscpc.gov.in/"
+    },
+    {
+        "keywords": ["mca", "roc", "company", "director", "din", "cin", "aoc", "mgt", "llp", "incorporation", "statutory register", "board meeting", "csr"],
+        "topic": "Corporate Affairs & MCA Compliance",
+        "name": "Ministry of Corporate Affairs (MCA)",
+        "url": "https://www.mca.gov.in/",
+        "additional_url": "https://www.mca.gov.in/content/mca/global/en/home.html"
+    },
+    {
+        "keywords": ["insurance", "reinsurance", "irdai", "policy", "premium", "64vb", "claims", "solvency", "underwriting", "surveyor"],
+        "topic": "Insurance & Reinsurance Regulatory Compliance",
+        "name": "Insurance Regulatory and Development Authority of India (IRDAI)",
+        "url": "https://www.irdai.gov.in/",
+        "additional_url": "https://bimabharosa.irdai.gov.in/"
+    },
+    {
+        "keywords": ["kyc", "aml", "cdd", "edd", "pmla", "fiu", "ubo", "v-cip", "pep", "money laundering", "rbi"],
+        "topic": "KYC, AML & Banking Compliance",
+        "name": "Reserve Bank of India (RBI) / FIU-IND",
+        "url": "https://www.rbi.org.in/",
+        "additional_url": "https://fiuindia.gov.in/"
+    },
+    {
+        "keywords": ["sebi", "insider trading", "lodr", "listing", "stock exchange", "shares", "takeover"],
+        "topic": "Securities & Capital Markets Compliance",
+        "name": "Securities and Exchange Board of India (SEBI)",
+        "url": "https://www.sebi.gov.in/",
+        "additional_url": "https://www.bseindia.com/"
+    },
+    {
+        "keywords": ["customs", "export", "import", "iec", "dgft", "tariff", "duty drawback"],
+        "topic": "Foreign Trade & Customs Compliance",
+        "name": "Directorate General of Foreign Trade (DGFT) & CBIC",
+        "url": "https://www.dgft.gov.in/",
+        "additional_url": "https://www.icegate.gov.in/"
+    }
+]
+
+EXTENDED_SYSTEM_PROMPT = """You are an authoritative Senior Compliance Officer and Regulatory Advisor for Indian corporate and statutory compliance.
+
+The user is asking a compliance-related question.
+Provide a clear, accurate, professional, authoritative, and helpful explanation based on established Indian statutory provisions and official regulatory guidelines.
+
+STRICT INSTRUCTIONS:
+1. Explain the legal/regulatory requirement directly, clearly, and concisely (under 250 words).
+2. Reference the governing legislation, rule, statutory authority, or standard procedure (e.g., Companies Act 2013, Income Tax Act 1961, CGST Act 2017, IRDAI Regulations, EPFO, PMLA, etc.).
+3. Emphasize mandatory procedural requirements, statutory registers, filings, or thresholds where established.
+4. Conclude with a helpful professional advisory: "For company-specific legal implementation or binding rulings, please consult official circulars or a qualified compliance professional."
+5. Tone must be professional, authoritative, objective, and reassuring."""
+
+
+def resolve_regulatory_source(query: str) -> SourceItem:
+    query_lower = query.lower()
+    for entry in REGULATORY_DIRECTORIES:
+        if any(kw in query_lower for kw in entry["keywords"]):
+            return SourceItem(
+                faq_id="STATUTORY-REF",
+                question="Official Regulatory Compliance Framework",
+                topic=entry["topic"],
+                name=entry["name"],
+                url=entry["url"],
+                additional_url=entry["additional_url"]
+            )
+    return SourceItem(
+        faq_id="STATUTORY-REF",
+        question="National Statutory & Regulatory Compliance",
+        topic="General Statutory Compliance",
+        name="National Portal of India / Official Regulatory Authorities",
+        url="https://www.india.gov.in/",
+        additional_url="https://www.mca.gov.in/"
+    )
+
+
+def ask_groq_extended(question: str, authority_info: SourceItem) -> str:
+    """Provide authoritative, extended compliance answer using Groq with official statutory context."""
+    client = get_groq_client()
+    if client is None:
+        return CASE_5_UNSUPPORTED_ANSWER
+
+    user_content = (
+        f"REGULATORY DOMAIN: {authority_info.topic}\n"
+        f"GOVERNING AUTHORITY: {authority_info.name} ({authority_info.url})\n\n"
+        f"USER COMPLIANCE QUESTION: {question}\n\n"
+        f"Please provide an authoritative, professional, and clear statutory compliance explanation."
+    )
+
+    candidate_models = [GROQ_MODEL] + [m for m in FALLBACK_MODELS if m != GROQ_MODEL]
+    for model_name in candidate_models:
+        try:
+            response = client.chat.completions.create(
+                model=model_name,
+                messages=[
+                    {"role": "system", "content": EXTENDED_SYSTEM_PROMPT},
+                    {"role": "user", "content": user_content}
+                ],
+                temperature=0.1,
+                max_tokens=650,
+            )
+            answer = (response.choices[0].message.content or "").strip()
+            if answer:
+                return answer
+        except Exception:
+            continue
+
+    return CASE_5_UNSUPPORTED_ANSWER
 
 
 @app.exception_handler(RequestValidationError)
@@ -578,6 +752,8 @@ def health():
         "faq_loaded": len(FAQS) > 0,
         "faq_count": len(FAQS),
         "topics": topics,
+        "keep_alive_target": os.getenv("RENDER_EXTERNAL_URL", os.getenv("APP_URL", "local")),
+        "keep_alive_interval_minutes": 12,
     }
 
 
@@ -631,8 +807,29 @@ def chat(request: ChatRequest):
             ]
         )
 
-    # Handle Case 5: Compliance-Related Question Not Supported in Current KB
-    if not ranked or ranked[0][1] < MIN_SCORE_TO_ANSWER:
+    # Handle Case 5: Extended Regulatory Intelligence (when not covered in local 58 FAQs)
+    min_required = MIN_SCORE_COMPLIANCE if compliance_domain else MIN_SCORE_TO_ANSWER
+    if not ranked or ranked[0][1] < min_required:
+        if compliance_domain:
+            auth_source = resolve_regulatory_source(resolved_query)
+            ext_answer = ask_groq_extended(raw_question, auth_source)
+            if ext_answer and ext_answer != CASE_5_UNSUPPORTED_ANSWER:
+                return ChatResponse(
+                    status="success",
+                    answer=ext_answer,
+                    sources=[auth_source],
+                    source=auth_source,
+                    confidence="high",
+                    score=0.88,
+                    case_type="extended_regulatory_guidance",
+                    suggestions=[
+                        "What are GST registration thresholds?",
+                        "What is Form 16 under TDS?",
+                        "What are ROC annual statutory filings?",
+                        "What are Officially Valid Documents for KYC?"
+                    ]
+                )
+
         return ChatResponse(
             status="unsupported_compliance",
             answer=CASE_5_UNSUPPORTED_ANSWER,
