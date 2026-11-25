@@ -4,150 +4,237 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Compliance FAQ Assistant | Intelligent Regulatory Knowledge System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy: #0b1f44;
-      --navy-dark: #061127;
-      --navy-light: #16346b;
-      --blue: #2563eb;
-      --blue-hover: #1d4ed8;
-      --blue-soft: #eff6ff;
-      --blue-border: #bfdbfe;
-      --ink: #0f172a;
-      --ink-muted: #64748b;
-      --line: #e2e8f0;
-      --line-subtle: #f1f5f9;
-      --bg: #f8fafc;
+      --navy-950: #050d21;
+      --navy-900: #0a1938;
+      --navy-800: #122b5c;
+      --blue-600: #2563eb;
+      --blue-700: #1d4ed8;
+      --blue-500: #3b82f6;
+      --blue-100: #dbeafe;
+      --blue-50: #eff6ff;
+      --ink-900: #0f172a;
+      --ink-700: #334155;
+      --ink-500: #64748b;
+      --ink-400: #94a3b8;
+      --border: #e2e8f0;
+      --border-soft: #f1f5f9;
       --white: #ffffff;
+      --canvas: #f6f8fc;
       --emerald: #059669;
       --emerald-bg: #ecfdf5;
+      --emerald-bd: #a7f3d0;
       --amber: #d97706;
       --amber-bg: #fffbeb;
+      --amber-bd: #fde68a;
       --rose: #e11d48;
       --rose-bg: #fff1f2;
+      --rose-bd: #fecdd3;
       --indigo: #4f46e5;
       --indigo-bg: #eef2ff;
       --cyan: #0891b2;
       --cyan-bg: #ecfeff;
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-      --shadow-lg: 0 10px 15px -3px rgba(11, 31, 68, 0.1), 0 4px 6px -4px rgba(11, 31, 68, 0.08);
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 18px;
-      --radius-full: 9999px;
+      --violet: #7c3aed;
+      --violet-bg: #f5f3ff;
+      --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-sm: 0 3px 12px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 12px 28px rgba(10, 25, 56, 0.09);
+      --shadow-float: 0 10px 32px rgba(10, 25, 56, 0.1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      line-height: 1.5;
-      overflow-x: hidden;
-      display: flex;
-      justify-content: center;
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
     }
 
-    /* Main Container */
+    body {
+      font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--canvas);
+      color: var(--ink-900);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Full-Screen 2-Column Layout */
     .app-layout {
-      width: 100%;
-      max-width: 980px;
+      width: 100vw;
       height: 100vh;
       height: 100dvh;
       display: flex;
-      flex-direction: column;
-      background: var(--white);
-      box-shadow: 0 20px 40px rgba(11, 31, 68, 0.08);
+      overflow: hidden;
       position: relative;
     }
 
-    /* Top Navigation Header */
-    header {
-      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+    /* Sidebar Backdrop (Mobile) */
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 13, 33, 0.55);
+      backdrop-filter: blur(3px);
+      z-index: 40;
+    }
+    .sidebar-backdrop.open { display: block; }
+
+    /* Left Navy Sidebar */
+    aside.sidebar {
+      width: 276px;
+      flex-shrink: 0;
+      background: linear-gradient(180deg, var(--navy-950) 0%, var(--navy-900) 65%, var(--navy-800) 100%);
       color: var(--white);
-      padding: 12px 20px;
-      padding-top: max(12px, env(safe-area-inset-top));
+      display: flex;
+      flex-direction: column;
+      padding: 18px 14px;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), margin-left 0.25s ease;
+      z-index: 50;
+    }
+    aside.sidebar.collapsed {
+      margin-left: -276px;
+    }
+
+    .sidebar-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      padding: 2px 4px 16px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      flex: none;
-      z-index: 20;
-      position: relative;
     }
 
-    .brand-group {
+    .sidebar-brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      min-width: 0;
-      flex: 1 1 auto;
-      overflow: hidden;
+      gap: 11px;
     }
 
-    .brand-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: var(--radius-md);
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.35), rgba(255, 255, 255, 0.1));
-      border: 1px solid rgba(255, 255, 255, 0.2);
+    .sidebar-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--blue-600), #1e40af);
+      border: 1px solid rgba(255, 255, 255, 0.24);
       display: grid;
       place-items: center;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
       flex-shrink: 0;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
-    .brand-meta {
-      min-width: 0;
-      flex: 1 1 auto;
-      overflow: hidden;
-    }
-
-    .brand-meta h1 {
-      font-size: 1.1rem;
+    .sidebar-brand-info h2 {
+      font-size: 0.94rem;
       font-weight: 700;
-      letter-spacing: -0.01em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      line-height: 1.25;
       color: var(--white);
+      letter-spacing: -0.01em;
     }
-
-    .brand-meta p.brand-subtitle {
-      font-size: 0.76rem;
+    .sidebar-brand-info span {
+      font-size: 0.7rem;
       color: #93c5fd;
-      font-weight: 400;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      line-height: 1.2;
-      margin-top: 1px;
+      display: block;
     }
 
-    .header-actions {
+    .btn-new-chat {
+      margin-top: 16px;
+      width: 100%;
+      background: linear-gradient(135deg, var(--blue-600), var(--blue-700));
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: var(--white);
+      padding: 11px 14px;
+      border-radius: 12px;
+      font-size: 0.84rem;
+      font-weight: 650;
+      font-family: inherit;
+      cursor: pointer;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn-new-chat:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(37, 99, 235, 0.48);
+    }
+
+    .nav-label {
+      font-size: 0.67rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #94a3b8;
+      margin: 20px 8px 8px;
+    }
+
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow-y: auto;
+    }
+
+    .nav-item-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: #dbeafe;
+      padding: 9px 10px;
+      border-radius: 10px;
+      font-size: 0.81rem;
+      font-weight: 500;
+      font-family: inherit;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.15s ease;
+    }
+    .nav-item-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      transform: translateX(2px);
+    }
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
       flex-shrink: 0;
     }
 
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      font-size: 0.74rem;
-      color: #e2e8f0;
-      white-space: nowrap;
+    .sidebar-bottom {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
+    .telemetry-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 11px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .telemetry-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: #e2e8f0;
+    }
+    .status-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 600;
+    }
     .status-dot {
       width: 8px;
       height: 8px;
@@ -157,373 +244,558 @@
     }
     .status-dot.online {
       background: #10b981;
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
     }
     .status-dot.offline {
       background: #f43f5e;
-      box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.25);
+      box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.3);
+    }
+    .kb-badge {
+      background: rgba(37, 99, 235, 0.35);
+      border: 1px solid rgba(147, 197, 253, 0.3);
+      color: #dbeafe;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-size: 0.69rem;
+      font-weight: 700;
+    }
+    .telemetry-sub {
+      font-size: 0.69rem;
+      color: #94a3b8;
+      line-height: 1.35;
     }
 
-    .faq-counter-pill {
-      background: rgba(37, 99, 235, 0.3);
-      border: 1px solid rgba(147, 197, 253, 0.3);
-      padding: 5px 11px;
-      border-radius: var(--radius-full);
-      font-size: 0.74rem;
-      font-weight: 600;
-      color: #dbeafe;
-      white-space: nowrap;
-      display: inline-flex;
+    /* Main Right Stage */
+    .main-stage {
+      flex: 1;
+      min-width: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background:
+        radial-gradient(circle at 18% 8%, rgba(37, 99, 235, 0.055), transparent 40%),
+        radial-gradient(circle at 85% 15%, rgba(10, 25, 56, 0.04), transparent 38%),
+        var(--canvas);
+      position: relative;
+    }
+
+    /* Crisp Frosted Top Header */
+    header.top-bar {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 11px 22px;
+      padding-top: max(11px, env(safe-area-inset-top));
+      display: flex;
       align-items: center;
-      gap: 5px;
+      justify-content: space-between;
+      gap: 12px;
+      flex-shrink: 0;
+      z-index: 20;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .btn-menu {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--navy-900);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.15s ease;
+    }
+    .btn-menu:hover { background: var(--border-soft); }
+
+    .header-titles {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+    .header-titles h1 {
+      font-size: 1.03rem;
+      font-weight: 750;
+      color: var(--navy-900);
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.25;
+    }
+    .header-titles p {
+      font-size: 0.74rem;
+      color: var(--ink-500);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       flex-shrink: 0;
     }
 
+    .header-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 9999px;
+      font-size: 0.73rem;
+      font-weight: 650;
+      white-space: nowrap;
+      background: var(--blue-50);
+      border: 1px solid var(--blue-100);
+      color: var(--navy-800);
+    }
+
+    .header-pill.status-pill {
+      background: var(--emerald-bg);
+      border-color: var(--emerald-bd);
+      color: #065f46;
+    }
+    .header-pill.status-pill.offline {
+      background: var(--rose-bg);
+      border-color: var(--rose-bd);
+      color: #9f1239;
+    }
+
     .btn-clear {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #f1f5f9;
+      background: var(--white);
+      border: 1px solid var(--border);
+      color: var(--ink-700);
       padding: 6px 12px;
-      border-radius: var(--radius-sm);
-      font-size: 0.78rem;
+      border-radius: 10px;
+      font-size: 0.77rem;
+      font-weight: 600;
+      font-family: inherit;
       cursor: pointer;
-      transition: all 0.15s ease;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       white-space: nowrap;
-      flex-shrink: 0;
+      transition: all 0.15s ease;
     }
     .btn-clear:hover {
-      background: rgba(255, 255, 255, 0.18);
-      border-color: rgba(255, 255, 255, 0.35);
+      background: var(--rose-bg);
+      border-color: var(--rose-bd);
+      color: var(--rose);
     }
 
-    /* Privacy Alert Notice Banner */
-    .privacy-notice {
-      background: #f8fafc;
-      border-bottom: 1px solid var(--line);
-      padding: 9px 24px;
-      font-size: 0.78rem;
-      color: var(--ink-muted);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex: none;
-    }
-    .privacy-notice svg {
-      color: var(--blue);
-      flex: none;
-    }
-    .privacy-notice strong {
-      color: var(--navy);
-    }
-
-    /* Chat Conversation Workspace */
-    main.chat-area {
+    /* Scrollable Chat Stream */
+    main.chat-stream {
       flex: 1;
+      width: 100%;
       overflow-y: auto;
-      padding: 24px;
-      scroll-behavior: smooth;
+      overflow-x: hidden;
+      padding: 26px 24px 18px;
       display: flex;
       flex-direction: column;
       gap: 20px;
-      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      scroll-behavior: smooth;
+    }
+    main.chat-stream::-webkit-scrollbar { width: 6px; }
+    main.chat-stream::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.4);
+      border-radius: 9999px;
     }
 
-    /* Welcome Section */
-    .welcome-container {
-      margin: auto auto;
-      text-align: center;
-      max-width: 760px;
-      padding: 10px 0 20px;
+    /* Welcome Hero */
+    .welcome-hero {
+      margin: auto;
+      width: 100%;
+      max-width: 880px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      animation: fadeUp 0.32s ease;
     }
 
-    .welcome-icon-box {
-      width: 62px;
-      height: 62px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, var(--navy-dark), var(--blue));
+    .hero-banner {
+      background: linear-gradient(135deg, var(--navy-950) 0%, var(--navy-900) 55%, var(--blue-700) 100%);
+      color: var(--white);
+      border-radius: 20px;
+      padding: 26px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 16px 36px rgba(10, 25, 56, 0.16);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-banner::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.28), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-emblem {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       display: grid;
       place-items: center;
-      margin: 0 auto 16px;
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
-      color: var(--white);
+      flex-shrink: 0;
+      backdrop-filter: blur(8px);
     }
 
-    .welcome-container h2 {
-      font-size: 1.5rem;
-      font-weight: 750;
-      color: var(--navy);
+    .hero-copy h2 {
+      font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+      font-weight: 800;
       letter-spacing: -0.02em;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+    }
+    .hero-copy p {
+      font-size: 0.9rem;
+      color: #dbeafe;
+      line-height: 1.55;
+      max-width: 640px;
     }
 
-    .welcome-container p.welcome-desc {
-      font-size: 0.94rem;
-      color: var(--ink-muted);
-      margin-bottom: 24px;
-      max-width: 580px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.5;
-    }
-
-    /* 6 Suggested Category Cards */
+    /* 6 Interactive Category Cards */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      text-align: left;
+      gap: 13px;
+      width: 100%;
     }
 
     .category-card {
       background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-md);
-      padding: 15px 16px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 16px 17px;
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-      overflow: hidden;
+      gap: 9px;
+      box-shadow: var(--shadow-xs);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .category-card:hover {
-      border-color: var(--blue);
-      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
-      transform: translateY(-2px);
-      background: var(--blue-soft);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(37, 99, 235, 0.4);
     }
 
-    .card-top-row {
+    .card-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .card-tag {
-      font-size: 0.68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 2px 7px;
-      border-radius: 4px;
+    .card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
     }
-    .tag-gst { background: #dbeafe; color: #1e40af; }
-    .tag-tds { background: #dcfce7; color: #166534; }
-    .tag-mca { background: #fef3c7; color: #92400e; }
-    .tag-kyc { background: #f3e8ff; color: #6b21a8; }
-    .tag-ins { background: #cffafe; color: #155e75; }
-    .tag-gen { background: #f1f5f9; color: #334155; }
+    .icon-gst { background: var(--blue-50); color: var(--blue-600); }
+    .icon-tds { background: var(--emerald-bg); color: var(--emerald); }
+    .icon-mca { background: var(--amber-bg); color: var(--amber); }
+    .icon-kyc { background: var(--violet-bg); color: var(--violet); }
+    .icon-ins { background: var(--cyan-bg); color: var(--cyan); }
+    .icon-gen { background: #f1f5f9; color: var(--navy-800); }
+
+    .card-arrow {
+      color: var(--ink-400);
+      transition: transform 0.18s ease, color 0.18s ease;
+    }
+    .category-card:hover .card-arrow {
+      color: var(--blue-600);
+      transform: translateX(3px);
+    }
 
     .category-card h3 {
-      font-size: 0.9rem;
-      font-weight: 650;
-      color: var(--navy);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--navy-900);
     }
-
     .category-card p {
       font-size: 0.78rem;
-      color: var(--ink-muted);
-      line-height: 1.4;
+      color: var(--ink-500);
+      line-height: 1.45;
     }
 
-    /* Message Bubbles */
-    .msg-group {
+    /* Example Pills */
+    .examples-row {
       display: flex;
-      flex-direction: column;
-      max-width: 100%;
-      animation: fadeIn 0.25s ease-out;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
+    .examples-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--ink-400);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-right: 4px;
+    }
+    .example-pill {
+      background: var(--white);
+      border: 1px solid var(--border);
+      color: var(--ink-700);
+      padding: 6px 13px;
+      border-radius: 9999px;
+      font-size: 0.77rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      box-shadow: var(--shadow-xs);
+      transition: all 0.15s ease;
+    }
+    .example-pill:hover {
+      background: var(--navy-900);
+      color: var(--white);
+      border-color: var(--navy-900);
+    }
+
+    /* Chat Message Rows */
+    .msg-row {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      max-width: 840px;
+      margin: 0 auto;
+      animation: fadeUp 0.22s ease;
+    }
+    .msg-row.user { flex-direction: row-reverse; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .msg-group.user { align-items: flex-end; }
-    .msg-group.bot { align-items: flex-start; }
+    .msg-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+    .msg-row.bot .msg-avatar {
+      background: linear-gradient(135deg, var(--navy-900), var(--blue-600));
+      color: var(--white);
+      box-shadow: 0 3px 10px rgba(37, 99, 235, 0.24);
+    }
+    .msg-row.user .msg-avatar {
+      background: var(--navy-800);
+      color: var(--white);
+    }
+
+    .msg-body-col {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      max-width: calc(100% - 46px);
+    }
+    .msg-row.user .msg-body-col { align-items: flex-end; }
+    .msg-row.bot .msg-body-col { align-items: flex-start; flex: 1; }
+
+    .msg-meta-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+      font-size: 0.72rem;
+      color: var(--ink-400);
+    }
+    .msg-meta-line strong { color: var(--navy-900); font-weight: 700; }
 
     .bubble {
-      max-width: 86%;
-      padding: 16px 20px;
-      border-radius: var(--radius-lg);
-      font-size: 0.94rem;
-      line-height: 1.65;
-      word-break: break-word;
+      padding: 15px 19px;
+      border-radius: 17px;
+      font-size: 0.93rem;
+      line-height: 1.64;
+      word-wrap: break-word;
       overflow-wrap: anywhere;
-      box-shadow: var(--shadow-sm);
     }
 
-    .user .bubble {
-      background: var(--navy);
+    .msg-row.user .bubble {
+      background: linear-gradient(135deg, var(--navy-900), var(--blue-700));
       color: var(--white);
-      border-bottom-right-radius: 4px;
+      border-top-right-radius: 4px;
+      box-shadow: 0 5px 16px rgba(10, 25, 56, 0.16);
+      max-width: 80%;
     }
 
-    .bot .bubble {
+    .msg-row.bot .bubble {
       background: var(--white);
-      color: var(--ink);
-      border: 1px solid var(--line);
-      border-bottom-left-radius: 4px;
+      color: var(--ink-900);
+      border: 1px solid var(--border);
+      border-top-left-radius: 4px;
+      box-shadow: var(--shadow-sm);
+      width: 100%;
+    }
+    .msg-row.bot .bubble.warning-state {
+      background: var(--amber-bg);
+      border-color: var(--amber-bd);
+      color: #78350f;
+    }
+    .msg-row.bot .bubble.error-state {
+      background: var(--rose-bg);
+      border-color: var(--rose-bd);
+      color: #881337;
     }
 
-    .bot .bubble.warning-state {
-      background: #fffbeb;
-      border-color: #fde68a;
-      color: #92400e;
-    }
+    .bubble p { margin-bottom: 10px; }
+    .bubble p:last-child { margin-bottom: 0; }
+    .bubble strong { color: var(--navy-900); font-weight: 700; }
+    .msg-row.user .bubble strong { color: var(--white); }
 
-    .bot .bubble.error-state {
-      background: #fef2f2;
-      border-color: #fecaca;
-      color: #991b1b;
-    }
-
-    /* Structured Markdown Typography in Bot Bubbles */
-    .bubble .resp-p {
-      margin-bottom: 12px;
-    }
-    .bubble .resp-p:last-child {
-      margin-bottom: 0;
-    }
-
-    .bubble .resp-heading {
-      font-size: 0.98rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin: 14px 0 8px;
-      letter-spacing: -0.01em;
-      border-bottom: 1px solid var(--line-subtle);
+    .bubble h4.resp-heading {
+      font-size: 0.96rem;
+      font-weight: 750;
+      color: var(--navy-800);
+      margin: 13px 0 6px;
       padding-bottom: 4px;
+      border-bottom: 1px solid var(--border-soft);
     }
-    .bubble .resp-heading:first-child {
-      margin-top: 0;
-    }
+    .bubble h4.resp-heading:first-child { margin-top: 0; }
 
-    .bubble .resp-list {
-      margin: 8px 0 14px 22px;
-      padding: 0;
-    }
-    .bubble .resp-list li {
-      margin-bottom: 6px;
-      line-height: 1.55;
-    }
-    .bubble .resp-list li:last-child {
-      margin-bottom: 0;
-    }
+    .bubble ul.resp-list, .bubble ol.resp-list { margin: 8px 0 12px 22px; }
+    .bubble ul.resp-list li, .bubble ol.resp-list li { margin-bottom: 5px; }
 
-    .bubble strong {
-      color: var(--navy);
-      font-weight: 650;
-    }
-
-    /* Citation Tag */
     .cite-pill {
       display: inline-block;
-      background: var(--blue-soft);
-      color: var(--blue);
-      border: 1px solid var(--blue-border);
-      border-radius: 4px;
-      padding: 1px 7px;
-      font-size: 0.74rem;
+      background: var(--blue-50);
+      color: var(--blue-700);
+      border: 1px solid var(--blue-100);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.73rem;
       font-weight: 700;
-      letter-spacing: 0.02em;
-      margin: 0 3px;
-      vertical-align: middle;
-      box-shadow: 0 1px 2px rgba(37, 99, 235, 0.06);
+      padding: 1px 6px;
+      border-radius: 5px;
+      margin: 0 2px;
     }
 
-    .timestamp {
-      font-size: 0.7rem;
-      color: var(--ink-muted);
-      margin-top: 5px;
-      padding: 0 4px;
-    }
-
-    /* Response Metadata: Badge & Sources */
-    .response-meta {
-      max-width: 86%;
-      width: 100%;
+    .bubble-actions {
+      display: flex;
+      justify-content: flex-end;
       margin-top: 10px;
+      padding-top: 7px;
+      border-top: 1px solid var(--border-soft);
+    }
+    .btn-copy {
+      background: transparent;
+      border: none;
+      color: var(--ink-500);
+      font-size: 0.73rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .btn-copy:hover { background: var(--canvas); color: var(--navy-900); }
+
+    /* Sources & Badges */
+    .response-meta {
+      margin-top: 10px;
+      width: 100%;
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
 
-    .meta-badges-row {
+    .badges-row {
       display: flex;
-      align-items: center;
-      gap: 8px;
       flex-wrap: wrap;
+      gap: 7px;
+      align-items: center;
     }
 
     .confidence-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.72rem;
-      font-weight: 650;
-      padding: 3px 9px;
-      border-radius: var(--radius-full);
+      font-size: 0.69rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 9999px;
       text-transform: uppercase;
       letter-spacing: 0.03em;
     }
-    .confidence-badge.high {
-      background: var(--emerald-bg);
-      color: var(--emerald);
-      border: 1px solid #a7f3d0;
-    }
-    .confidence-badge.medium {
-      background: var(--amber-bg);
-      color: var(--amber);
-      border: 1px solid #fde68a;
-    }
-    .confidence-badge.low {
-      background: var(--line-subtle);
-      color: var(--ink-muted);
-      border: 1px solid var(--line);
-    }
+    .confidence-badge.high { background: var(--emerald-bg); color: var(--emerald); border: 1px solid var(--emerald-bd); }
+    .confidence-badge.medium { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-bd); }
+    .confidence-badge.low { background: var(--rose-bg); color: var(--rose); border: 1px solid var(--rose-bd); }
 
-    .case-type-badge {
-      display: inline-flex;
-      align-items: center;
-      font-size: 0.72rem;
-      font-weight: 550;
-      padding: 3px 9px;
-      border-radius: var(--radius-full);
-      background: var(--blue-soft);
-      color: var(--blue);
-      border: 1px solid var(--blue-border);
+    .case-badge {
+      font-size: 0.69rem;
+      font-weight: 600;
+      color: var(--ink-700);
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 9999px;
     }
-    .case-type-badge.statutory {
+    .case-badge.statutory {
       background: var(--indigo-bg);
       color: var(--indigo);
       border-color: #c7d2fe;
     }
 
-    /* Source Cards (Multiple Source Citations) */
-    .sources-container {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .sources-panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 12px 14px;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .sources-title {
+      font-size: 0.7rem;
+      font-weight: 750;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-500);
+      margin-bottom: 9px;
+    }
+
+    .sources-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 9px;
     }
 
     .source-card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-left: 4px solid var(--blue);
-      border-radius: var(--radius-sm);
-      padding: 12px 14px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      background: var(--canvas);
+      border: 1px solid var(--border);
+      border-left: 3.5px solid var(--blue-600);
+      border-radius: 10px;
+      padding: 10px 12px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
     }
 
-    .source-card-header {
+    .source-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -531,80 +803,67 @@
       flex-wrap: wrap;
     }
 
-    .source-faq-id {
-      background: var(--blue-soft);
-      color: var(--blue);
-      font-size: 0.72rem;
+    .source-id {
+      background: var(--navy-900);
+      color: var(--white);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.69rem;
       font-weight: 700;
       padding: 2px 7px;
-      border-radius: 4px;
-      letter-spacing: 0.02em;
+      border-radius: 5px;
     }
 
-    .source-topic-tag {
-      font-size: 0.72rem;
-      color: var(--ink-muted);
-      font-weight: 500;
+    .source-topic {
+      font-size: 0.71rem;
+      color: var(--ink-500);
+      font-weight: 600;
     }
 
-    .source-question {
-      font-size: 0.84rem;
+    .source-q {
+      font-size: 0.82rem;
       font-weight: 650;
-      color: var(--navy);
+      color: var(--navy-900);
+      line-height: 1.38;
     }
 
-    .source-links-row {
+    .source-links {
       display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.76rem;
-      margin-top: 2px;
       flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.74rem;
+      margin-top: auto;
+      padding-top: 2px;
     }
 
-    .source-link-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      color: var(--blue);
+    .source-link {
+      color: var(--blue-600);
       text-decoration: none;
-      font-weight: 550;
-      transition: color 0.15s ease;
+      font-weight: 600;
     }
-    .source-link-item:hover {
-      color: var(--blue-hover);
-      text-decoration: underline;
-    }
+    .source-link:hover { text-decoration: underline; }
 
-    /* Suggestion Chips */
     .chips-group {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 4px;
+      gap: 7px;
     }
 
     .suggestion-chip {
       background: var(--white);
-      border: 1px solid var(--blue-border);
-      color: var(--blue);
-      border-radius: var(--radius-full);
-      padding: 6px 14px;
-      font-size: 0.78rem;
-      font-weight: 500;
+      border: 1px solid var(--blue-100);
+      color: var(--blue-700);
+      border-radius: 9999px;
+      padding: 6px 13px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      font-family: inherit;
       cursor: pointer;
-      text-align: left;
       transition: all 0.15s ease;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
     }
     .suggestion-chip:hover {
-      background: var(--blue);
+      background: var(--blue-600);
       color: var(--white);
-      border-color: var(--blue);
-      transform: translateY(-1px);
+      border-color: var(--blue-600);
     }
 
     /* Typing Indicator */
@@ -612,365 +871,383 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 14px 20px;
+      padding: 14px 18px;
+      width: auto !important;
     }
     .typing-box span {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: var(--blue);
-      animation: pulseBounce 1.2s infinite ease-in-out;
+      background: var(--blue-600);
+      animation: bounce 1.2s infinite ease-in-out;
     }
     .typing-box span:nth-child(2) { animation-delay: 0.2s; }
     .typing-box span:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes pulseBounce {
-      0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+    @keyframes bounce {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.35; }
       40% { transform: translateY(-6px); opacity: 1; }
     }
 
-    /* Footer & Composer */
+    /* Floating Composer Footer */
     footer.chat-footer {
-      background: var(--white);
-      border-top: 1px solid var(--line);
-      padding: 14px 24px;
+      width: 100%;
+      background: linear-gradient(180deg, rgba(246, 248, 252, 0) 0%, var(--canvas) 28%);
+      padding: 8px 24px 14px;
       padding-bottom: max(14px, env(safe-area-inset-bottom));
-      flex: none;
-      z-index: 10;
+      flex-shrink: 0;
     }
 
-    .composer-form {
+    .composer-wrap {
+      width: 100%;
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    .composer-box {
       display: flex;
+      align-items: center;
       gap: 10px;
-      align-items: center;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 17px;
+      padding: 6px 6px 6px 18px;
+      box-shadow: var(--shadow-float);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
     }
-
-    .input-wrapper {
-      position: relative;
-      flex: 1;
-      display: flex;
-      align-items: center;
+    .composer-box:focus-within {
+      border-color: var(--blue-600);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.13), var(--shadow-float);
     }
 
     .composer-input {
-      width: 100%;
-      background: var(--bg);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-md);
-      padding: 13px 18px;
+      flex: 1;
+      min-width: 0;
+      border: none;
+      background: transparent;
       font-size: 0.94rem;
-      color: var(--ink);
+      color: var(--ink-900);
       outline: none;
-      transition: all 0.2s ease;
+      padding: 9px 2px;
+      font-family: inherit;
     }
-    .composer-input:focus {
-      background: var(--white);
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-    }
+    .composer-input::placeholder { color: var(--ink-400); }
 
     .btn-send {
-      flex: none;
-      width: 48px;
-      height: 48px;
-      border-radius: var(--radius-md);
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
       border: none;
-      background: var(--navy);
+      background: linear-gradient(135deg, var(--navy-900), var(--blue-600));
       color: var(--white);
       display: grid;
       place-items: center;
       cursor: pointer;
-      transition: all 0.15s ease;
-      box-shadow: var(--shadow-sm);
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
     }
-    .btn-send:hover:not(:disabled) {
-      background: var(--navy-light);
-      transform: translateY(-1px);
-    }
-    .btn-send:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-      transform: none;
-    }
+    .btn-send:hover:not(:disabled) { transform: translateY(-1px); }
+    .btn-send:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
 
-    .footer-disclaimer {
+    .footer-note {
       font-size: 0.7rem;
-      color: var(--ink-muted);
+      color: var(--ink-400);
       text-align: center;
       margin-top: 8px;
-      line-height: 1.4;
     }
 
-    /* Toast Notification */
+    /* Toast */
     .toast-alert {
       position: fixed;
-      top: 20px;
+      top: 18px;
       left: 50%;
-      transform: translate(-50%, -100px);
-      background: var(--navy-dark);
+      transform: translate(-50%, -90px);
+      background: var(--navy-950);
       color: var(--white);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: var(--radius-md);
-      padding: 10px 20px;
-      font-size: 0.85rem;
-      box-shadow: var(--shadow-lg);
+      padding: 10px 18px;
+      border-radius: 11px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-md);
       z-index: 1000;
       opacity: 0;
       pointer-events: none;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.22s ease;
     }
-    .toast-alert.show {
-      transform: translate(-50%, 0);
-      opacity: 1;
-      pointer-events: auto;
+    .toast-alert.show { transform: translate(-50%, 0); opacity: 1; }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 980px) {
+      aside.sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+        margin-left: 0 !important;
+      }
+      aside.sidebar.open {
+        transform: translateX(0);
+      }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-    /* Mobile & Tablet Responsiveness */
-    @media (max-width: 768px) {
-      .app-layout {
-        max-width: 100%;
-        height: 100vh;
-        border-radius: 0;
-        box-shadow: none;
+    @media (max-width: 640px) {
+      header.top-bar { padding: 10px 14px; gap: 8px; }
+      .header-titles h1 { font-size: 0.96rem; }
+      .header-titles p { display: none; }
+      .header-pill.status-pill { display: none; }
+      .header-pill { padding: 4px 9px; font-size: 0.7rem; }
+      .btn-clear { padding: 6px 10px; font-size: 0.74rem; }
+      main.chat-stream { padding: 16px 14px 12px; gap: 16px; }
+      .hero-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 18px;
+        gap: 12px;
       }
-      header {
-        padding: 10px 14px;
-        gap: 10px;
-      }
-      .brand-group {
-        gap: 10px;
-      }
-      .brand-logo {
-        width: 36px;
-        height: 36px;
-        border-radius: 8px;
-      }
-      .brand-logo svg {
-        width: 20px;
-        height: 20px;
-      }
-      .brand-meta h1 {
-        font-size: 1rem;
-      }
-      .brand-meta p.brand-subtitle {
-        display: none;
-      }
-      .faq-counter-pill {
-        padding: 4px 8px;
-        font-size: 0.72rem;
-      }
-      .btn-clear {
-        padding: 5px 10px;
-        font-size: 0.75rem;
-      }
-      .privacy-notice { padding: 8px 14px; font-size: 0.74rem; }
-      main.chat-area { padding: 14px; gap: 14px; }
-      .cards-grid {
-        grid-template-columns: 1fr;
-      }
-      .bubble, .response-meta {
-        max-width: 94%;
-      }
-      footer.chat-footer {
-        padding: 10px 14px;
-        padding-bottom: max(10px, env(safe-area-inset-bottom));
-      }
+      .cards-grid { grid-template-columns: 1fr; gap: 10px; }
+      .sources-list { grid-template-columns: 1fr; }
+      .msg-row.user .bubble { max-width: 90%; }
+      footer.chat-footer { padding: 6px 12px 12px; padding-bottom: max(12px, env(safe-area-inset-bottom)); }
     }
 
-    @media (max-width: 460px) {
-      header {
-        padding: 8px 10px;
-        gap: 8px;
-      }
-      .brand-logo {
-        width: 32px;
-        height: 32px;
-        border-radius: 7px;
-      }
-      .brand-logo svg {
-        width: 16px;
-        height: 16px;
-      }
-      .brand-meta h1 {
-        font-size: 0.88rem;
-        letter-spacing: -0.02em;
-      }
-      .faq-counter-pill {
-        padding: 4px 6px;
-        font-size: 0.68rem;
-      }
-      .btn-clear {
-        padding: 5px 8px;
-        font-size: 0.72rem;
-        gap: 4px;
-      }
-    }
-
-    @media (max-width: 360px) {
-      .btn-clear-text {
-        display: none;
-      }
-      .btn-clear {
-        padding: 6px;
-      }
-      .faq-count-icon {
-        display: none;
-      }
-    }
-
-    @media (min-width: 769px) and (max-width: 960px) {
-      .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    @media (max-width: 390px) {
+      .btn-clear-label { display: none; }
+      .btn-clear { padding: 6px; }
+      .msg-avatar { width: 28px; height: 28px; font-size: 0.66rem; }
+      .msg-body-col { max-width: calc(100% - 39px); }
     }
   </style>
 </head>
 <body>
 
 <div class="app-layout">
-  <!-- Header -->
-  <header>
-    <div class="brand-group">
-      <div class="brand-logo" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          <path d="M9 12l2 2 4-4"/>
-        </svg>
-      </div>
-      <div class="brand-meta">
-        <h1>Compliance FAQ Assistant</h1>
-        <p class="brand-subtitle">Your Intelligent Compliance Knowledge Assistant</p>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- Collapsible Navy Sidebar -->
+  <aside class="sidebar" id="sidebar" aria-label="Compliance Navigation">
+    <div class="sidebar-top">
+      <div class="sidebar-brand">
+        <div class="sidebar-logo" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="sidebar-brand-info">
+          <h2>Compliance AI</h2>
+          <span>Regulatory Knowledge Base</span>
+        </div>
       </div>
     </div>
 
-    <div class="header-actions">
-      <div class="faq-counter-pill" id="faqCountPill" title="Knowledge Base Index Status">
-        <span class="faq-count-icon">📚</span>
-        <span id="faqCountText">58 FAQs</span>
-      </div>
-      <button class="btn-clear" id="clearBtn" type="button" title="Clear conversation history">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="3 6 5 6 21 6"></polyline>
-          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-        </svg>
-        <span class="btn-clear-text">Clear</span>
+    <button class="btn-new-chat" id="sidebarNewChatBtn" type="button">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+      New Conversation
+    </button>
+
+    <div class="nav-label">Compliance Topics</div>
+    <nav class="nav-list">
+      <button class="nav-item-btn" type="button" data-query="What are the turnover thresholds and criteria for mandatory GST registration?">
+        <span class="nav-dot" style="background:#3b82f6;"></span>GST Compliance
       </button>
-    </div>
-  </header>
+      <button class="nav-item-btn" type="button" data-query="What is TDS and how does deduction and quarterly deposit work?">
+        <span class="nav-dot" style="background:#10b981;"></span>TDS &amp; Tax Deduction
+      </button>
+      <button class="nav-item-btn" type="button" data-query="What are the mandatory annual ROC filings for a private limited company?">
+        <span class="nav-dot" style="background:#f59e0b;"></span>Company Filings (MCA)
+      </button>
+      <button class="nav-item-btn" type="button" data-query="What are Officially Valid Documents for KYC customer verification?">
+        <span class="nav-dot" style="background:#8b5cf6;"></span>KYC &amp; Documentation
+      </button>
+      <button class="nav-item-btn" type="button" data-query="What is Section 64VB of the Insurance Act regarding premium collection and risk assumption?">
+        <span class="nav-dot" style="background:#06b6d4;"></span>Insurance &amp; Reinsurance
+      </button>
+      <button class="nav-item-btn" type="button" data-query="What are the core pillars of corporate governance and internal controls?">
+        <span class="nav-dot" style="background:#94a3b8;"></span>General Governance
+      </button>
+    </nav>
 
-  <!-- Privacy Warning Banner -->
-  <div class="privacy-notice">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="10"></circle>
-      <line x1="12" y1="8" x2="12" y2="12"></line>
-      <line x1="12" y1="16" x2="12.01" y2="16"></line>
-    </svg>
-    <span><strong>Privacy Notice:</strong> Do not enter PAN, Aadhaar, OTPs, passwords, bank details or confidential company data. Chats are stored locally in your browser session only.</span>
+    <div class="sidebar-bottom">
+      <div class="telemetry-card">
+        <div class="telemetry-row">
+          <span class="status-wrap">
+            <span class="status-dot" id="sidebarStatusDot"></span>
+            <span id="sidebarStatusText">Checking...</span>
+          </span>
+          <span class="kb-badge" id="sidebarFaqCount">– FAQs</span>
+        </div>
+        <div class="telemetry-sub">
+          Source-grounded answers with verified FAQ IDs &amp; official portals.
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Chat Stage -->
+  <div class="main-stage">
+    <header class="top-bar">
+      <div class="header-left">
+        <button class="btn-menu" id="menuToggleBtn" type="button" title="Toggle sidebar" aria-label="Toggle navigation sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <div class="header-titles">
+          <h1>Compliance FAQ Assistant</h1>
+          <p>Your Intelligent Compliance Knowledge Assistant</p>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="header-pill status-pill" id="headerStatusPill" title="Assistant Status">
+          <span class="status-dot" id="statusDot"></span>
+          <span id="statusText">Checking...</span>
+        </div>
+        <div class="header-pill" id="faqCountPill" title="Loaded Knowledge Base">
+          <span id="faqCountText">– FAQs</span>
+        </div>
+        <button class="btn-clear" id="clearBtn" type="button" title="Clear conversation">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          </svg>
+          <span class="btn-clear-label">Clear</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="chat-stream" id="chatArea" aria-live="polite">
+      <section class="welcome-hero" id="welcomeSection">
+        <div class="hero-banner">
+          <div class="hero-emblem" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="hero-copy">
+            <h2>Compliance FAQ Assistant</h2>
+            <p>
+              Welcome to Compliance FAQ Assistant. Ask me anything about GST, TDS, company filings, KYC and regulatory compliance.
+            </p>
+          </div>
+        </div>
+
+        <!-- 6 Suggestion Cards -->
+        <div class="cards-grid">
+          <div class="category-card" data-query="What are the turnover thresholds and criteria for mandatory GST registration?">
+            <div class="card-top">
+              <div class="card-icon icon-gst">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <h3>GST Compliance</h3>
+            <p>Registration thresholds, GSTIN, GSTR-1 &amp; 3B returns, ITC and e-way bills</p>
+          </div>
+
+          <div class="category-card" data-query="What is TDS and how does deduction and quarterly deposit work?">
+            <div class="card-top">
+              <div class="card-icon icon-tds">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+              </div>
+              <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <h3>TDS Compliance</h3>
+            <p>Deduction rules, Form 16/16A, 26AS/AIS and quarterly deposit timelines</p>
+          </div>
+
+          <div class="category-card" data-query="What are the mandatory annual ROC filings for a private limited company?">
+            <div class="card-top">
+              <div class="card-icon icon-mca">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 22V12h6v10"/><path d="M8 7h.01"/><path d="M12 7h.01"/><path d="M16 7h.01"/></svg>
+              </div>
+              <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <h3>Company Filings</h3>
+            <p>MCA21, SPICe+, DIN KYC, annual accounts and LLP statutory filings</p>
+          </div>
+
+          <div class="category-card" data-query="What are Officially Valid Documents for KYC customer verification?">
+            <div class="card-top">
+              <div class="card-icon icon-kyc">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <h3>KYC Documentation</h3>
+            <p>Customer verification, OVDs, beneficial ownership and record retention</p>
+          </div>
+
+          <div class="category-card" data-query="What is Section 64VB of the Insurance Act regarding premium collection and risk assumption?">
+            <div class="card-top">
+              <div class="card-icon icon-ins">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <h3>Insurance Compliance</h3>
+            <p>Reinsurance treaties, Section 64VB, claims and policy record-keeping</p>
+          </div>
+
+          <div class="category-card" data-query="What are the core pillars of corporate governance and internal controls?">
+            <div class="card-top">
+              <div class="card-icon icon-gen">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              </div>
+              <svg class="card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <h3>General Regulatory Compliance</h3>
+            <p>Audit trails, internal controls, risk management and escalation</p>
+          </div>
+        </div>
+
+        <!-- Example Questions -->
+        <div class="examples-row">
+          <span class="examples-label">Try asking:</span>
+          <button class="example-pill" type="button" data-query="Explain the difference between GSTR-1 and GSTR-3B.">GSTR-1 vs GSTR-3B</button>
+          <button class="example-pill" type="button" data-query="What is Form 26AS and AIS in TDS compliance?">Form 26AS &amp; AIS</button>
+          <button class="example-pill" type="button" data-query="What is reinsurance documentation and why is it important?">Reinsurance documentation</button>
+          <button class="example-pill" type="button" data-query="Explain beneficial ownership under KYC rules.">Beneficial ownership (UBO)</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Composer Footer -->
+    <footer class="chat-footer">
+      <div class="composer-wrap">
+        <div class="composer-box">
+          <input
+            type="text"
+            class="composer-input"
+            id="userInput"
+            placeholder="Ask any compliance question (e.g., What is TDS? Explain GSTR-3B...)"
+            autocomplete="off"
+            maxlength="500"
+            aria-label="Ask a compliance question"
+          >
+          <button class="btn-send" id="sendBtn" type="button" title="Send message" aria-label="Send message">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+        <div class="footer-note">
+          Do not enter PAN, Aadhaar, OTPs or confidential records · Educational guidance only; consult a qualified expert for legal or tax decisions.
+        </div>
+      </div>
+    </footer>
   </div>
-
-  <!-- Chat Area -->
-  <main class="chat-area" id="chatArea" aria-live="polite">
-    <!-- Welcome section shown when chat is empty -->
-    <section class="welcome-container" id="welcomeSection">
-      <div class="welcome-icon-box" aria-hidden="true">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          <path d="M9 12l2 2 4-4"/>
-        </svg>
-      </div>
-      <h2>Welcome to Compliance FAQ Assistant</h2>
-      <p class="welcome-desc">
-        Ask me anything about GST, TDS, company filings, KYC, and regulatory compliance.
-        Click an interactive category card below or type any question into the chat.
-      </p>
-
-      <!-- 6 Suggestion Cards -->
-      <div class="cards-grid">
-        <div class="category-card" data-query="What are the turnover thresholds and criteria for mandatory GST registration?">
-          <div class="card-top-row">
-            <span class="card-tag tag-gst">GST</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
-          <h3>GST Compliance</h3>
-          <p>Registration thresholds, GSTR-1, GSTR-3B & Input Tax Credit</p>
-        </div>
-
-        <div class="category-card" data-query="What is TDS and how does deduction and quarterly deposit work?">
-          <div class="card-top-row">
-            <span class="card-tag tag-tds">TDS</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
-          <h3>TDS Compliance</h3>
-          <p>Deduction rules, monthly deposits (ITNS 281), returns & Form 16/16A</p>
-        </div>
-
-        <div class="category-card" data-query="What are ROC annual statutory filings such as Form AOC-4 and MGT-7?">
-          <div class="card-top-row">
-            <span class="card-tag tag-mca">MCA & ROC</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
-          <h3>Company Filings</h3>
-          <p>MCA21, SPICe+, DIN KYC, annual accounts & LLP forms</p>
-        </div>
-
-        <div class="category-card" data-query="What are Officially Valid Documents for KYC customer verification?">
-          <div class="card-top-row">
-            <span class="card-tag tag-kyc">KYC & CDD</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
-          <h3>KYC Documentation</h3>
-          <p>Customer Due Diligence (CDD), OVDs, UBO & 5-year retention</p>
-        </div>
-
-        <div class="category-card" data-query="What is Section 64VB of the Insurance Act regarding premium collection and risk assumption?">
-          <div class="card-top-row">
-            <span class="card-tag tag-ins">Insurance</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
-          <h3>Insurance Compliance</h3>
-          <p>Reinsurance treaties, Section 64VB, claims & solvency margins</p>
-        </div>
-
-        <div class="category-card" data-query="What are the core pillars of corporate governance and internal controls?">
-          <div class="card-top-row">
-            <span class="card-tag tag-gen">Governance</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#334155" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
-          <h3>General Regulatory</h3>
-          <p>Audit trails, risk management, SOPs & whistleblower policy</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Composer Footer -->
-  <footer class="chat-footer">
-    <div class="composer-form">
-      <div class="input-wrapper">
-        <input
-          type="text"
-          id="userInput"
-          class="composer-input"
-          placeholder="Ask a compliance question (e.g. 'What is TDS and how does deduction work?')..."
-          maxlength="500"
-          autocomplete="off"
-          aria-label="Compliance question"
-        />
-      </div>
-      <button class="btn-send" id="sendBtn" type="button" aria-label="Send question">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="22" y1="2" x2="11" y2="13"></line>
-          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-        </svg>
-      </button>
-    </div>
-    <p class="footer-disclaimer">
-      Answers are strictly grounded in verified compliance statutes and knowledge records. For case-specific legal or tax decisions, please consult a qualified compliance professional.
-    </p>
-  </footer>
 </div>
 
-<!-- Floating Toast -->
 <div class="toast-alert" id="toastAlert" role="alert"></div>
 
 <script>
@@ -982,21 +1259,28 @@
   var userInput = document.getElementById("userInput");
   var sendBtn = document.getElementById("sendBtn");
   var clearBtn = document.getElementById("clearBtn");
+  var sidebarNewChatBtn = document.getElementById("sidebarNewChatBtn");
+  var sidebar = document.getElementById("sidebar");
+  var sidebarBackdrop = document.getElementById("sidebarBackdrop");
+  var menuToggleBtn = document.getElementById("menuToggleBtn");
   var toastAlert = document.getElementById("toastAlert");
   var statusDot = document.getElementById("statusDot");
   var statusText = document.getElementById("statusText");
-  var faqCountPill = document.getElementById("faqCountPill");
+  var headerStatusPill = document.getElementById("headerStatusPill");
+  var faqCountText = document.getElementById("faqCountText");
+  var sidebarStatusDot = document.getElementById("sidebarStatusDot");
+  var sidebarStatusText = document.getElementById("sidebarStatusText");
+  var sidebarFaqCount = document.getElementById("sidebarFaqCount");
 
   var SESSION_STORAGE_KEY = "compliance_faq_session_history";
-  var conversationHistory = []; // session memory of turns: [{role: 'user', text: '...'}, {role: 'bot', text: '...'}]
+  var conversationHistory = [];
   var isBusy = false;
 
-  // Safe DOM helper
-  function createElement(tag, className, textContent) {
-    var el = document.createElement(tag);
-    if (className) el.className = className;
-    if (textContent !== undefined && textContent !== null) el.textContent = textContent;
-    return el;
+  function el(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined && text !== null) node.textContent = text;
+    return node;
   }
 
   function getTimestamp() {
@@ -1010,330 +1294,289 @@
   function showToast(msg) {
     toastAlert.textContent = msg;
     toastAlert.classList.add("show");
-    setTimeout(function() {
-      toastAlert.classList.remove("show");
-    }, 4000);
+    setTimeout(function() { toastAlert.classList.remove("show"); }, 3500);
+  }
+
+  function toggleSidebar() {
+    if (window.innerWidth <= 980) {
+      sidebar.classList.toggle("open");
+      sidebarBackdrop.classList.toggle("open");
+    } else {
+      sidebar.classList.toggle("collapsed");
+    }
+  }
+
+  function closeMobileSidebar() {
+    sidebar.classList.remove("open");
+    sidebarBackdrop.classList.remove("open");
   }
 
   function sanitizeUrl(raw) {
     try {
-      var parsed = new URL(raw);
-      if (parsed.protocol === "http:" || parsed.protocol === "https:") {
-        return parsed.href;
-      }
-    } catch(e) {}
+      var u = new URL(raw);
+      if (u.protocol === "http:" || u.protocol === "https:") return u.href;
+    } catch (e) {}
     return null;
   }
 
-  function saveSessionHistory() {
-    try {
-      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(conversationHistory));
-    } catch(e) {}
+  function formatMarkdown(rawText) {
+    if (!rawText) return "";
+    var text = rawText.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    text = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+    text = text.replace(/\[([A-Z0-9\-]+)\]/g, '<span class="cite-pill">$1</span>');
+
+    var lines = text.split("\n");
+    var blocks = [];
+    var inList = false;
+    var listType = "";
+
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].trim();
+      if (!line) {
+        if (inList) { blocks.push(listType === "ul" ? "</ul>" : "</ol>"); inList = false; }
+        continue;
+      }
+      var h = line.match(/^#{1,4}\s+(.*)$/);
+      if (h) {
+        if (inList) { blocks.push(listType === "ul" ? "</ul>" : "</ol>"); inList = false; }
+        blocks.push('<h4 class="resp-heading">' + h[1] + "</h4>");
+        continue;
+      }
+      var b = line.match(/^[\*\-\•]\s+(.*)$/);
+      if (b) {
+        if (!inList || listType !== "ul") {
+          if (inList) blocks.push("</ol>");
+          blocks.push('<ul class="resp-list">');
+          inList = true; listType = "ul";
+        }
+        blocks.push("<li>" + b[1] + "</li>");
+        continue;
+      }
+      var n = line.match(/^(\d+)[\.\)]\s+(.*)$/);
+      if (n) {
+        if (!inList || listType !== "ol") {
+          if (inList) blocks.push("</ul>");
+          blocks.push('<ol class="resp-list">');
+          inList = true; listType = "ol";
+        }
+        blocks.push("<li>" + n[2] + "</li>");
+        continue;
+      }
+      if (inList) { blocks.push(listType === "ul" ? "</ul>" : "</ol>"); inList = false; }
+      blocks.push("<p>" + line + "</p>");
+    }
+    if (inList) blocks.push(listType === "ul" ? "</ul>" : "</ol>");
+    return blocks.join("");
   }
 
   function hideWelcome() {
     if (welcomeSection) welcomeSection.style.display = "none";
   }
 
-  // Structured Markdown to Safe HTML Formatter
-  function formatMarkdown(rawText) {
-    if (!rawText) return "";
-
-    // 1. Sanitize raw HTML tags to prevent XSS
-    var text = rawText
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
-
-    // 2. Bold text formatting: **text** -> <strong>text</strong>
-    text = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-
-    // 3. Citation tags: [GST-001] -> <span class="cite-pill">GST-001</span>
-    text = text.replace(/\[([A-Z0-9\-]+)\]/g, '<span class="cite-pill">$1</span>');
-
-    // 4. Parse block elements (headings, bullet lists, numbered lists, paragraphs)
-    var lines = text.split("\n");
-    var htmlBlocks = [];
-    var inList = false;
-    var listType = ""; // 'ul' or 'ol'
-
-    for (var i = 0; i < lines.length; i++) {
-      var line = lines[i].trim();
-
-      if (!line) {
-        if (inList) {
-          htmlBlocks.push(listType === "ul" ? "</ul>" : "</ol>");
-          inList = false;
-        }
-        continue;
-      }
-
-      // Check Heading (### or ##)
-      var headingMatch = line.match(/^#{1,4}\s+(.*)$/);
-      if (headingMatch) {
-        if (inList) {
-          htmlBlocks.push(listType === "ul" ? "</ul>" : "</ol>");
-          inList = false;
-        }
-        htmlBlocks.push('<h4 class="resp-heading">' + headingMatch[1] + "</h4>");
-        continue;
-      }
-
-      // Check Bullet List item (* or - or •)
-      var bulletMatch = line.match(/^[\*\-\•]\s+(.*)$/);
-      if (bulletMatch) {
-        if (!inList || listType !== "ul") {
-          if (inList) htmlBlocks.push(listType === "ul" ? "</ul>" : "</ol>");
-          htmlBlocks.push('<ul class="resp-list">');
-          inList = true;
-          listType = "ul";
-        }
-        htmlBlocks.push("<li>" + bulletMatch[1] + "</li>");
-        continue;
-      }
-
-      // Check Numbered List item (1. or 2.)
-      var numMatch = line.match(/^(\d+)[\.\)]\s+(.*)$/);
-      if (numMatch) {
-        if (!inList || listType !== "ol") {
-          if (inList) htmlBlocks.push(listType === "ul" ? "</ul>" : "</ol>");
-          htmlBlocks.push('<ol class="resp-list">');
-          inList = true;
-          listType = "ol";
-        }
-        htmlBlocks.push("<li>" + numMatch[2] + "</li>");
-        continue;
-      }
-
-      // Regular paragraph line
-      if (inList) {
-        htmlBlocks.push(listType === "ul" ? "</ul>" : "</ol>");
-        inList = false;
-      }
-      htmlBlocks.push('<p class="resp-p">' + line + "</p>");
-    }
-
-    if (inList) {
-      htmlBlocks.push(listType === "ul" ? "</ul>" : "</ol>");
-    }
-
-    return htmlBlocks.join("");
+  function saveSession() {
+    try {
+      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(conversationHistory.slice(-24)));
+    } catch (e) {}
   }
 
-  // Render User Message
   function renderUserBubble(text, time) {
-    var group = createElement("div", "msg-group user");
-    group.appendChild(createElement("div", "bubble", text));
-    group.appendChild(createElement("div", "timestamp", time));
-    chatArea.appendChild(group);
+    var row = el("div", "msg-row user");
+    row.appendChild(el("div", "msg-avatar", "You"));
+
+    var col = el("div", "msg-body-col");
+    var meta = el("div", "msg-meta-line");
+    meta.appendChild(el("span", "", time));
+    meta.appendChild(el("strong", "", "You"));
+    col.appendChild(meta);
+    col.appendChild(el("div", "bubble", text));
+
+    row.appendChild(col);
+    chatArea.appendChild(row);
   }
 
-  // Create Source Card
   function buildSourceCard(source) {
-    var card = createElement("div", "source-card");
+    var card = el("div", "source-card");
+    var top = el("div", "source-top");
+    top.appendChild(el("span", "source-id", source.faq_id || "KB-REF"));
+    if (source.topic) top.appendChild(el("span", "source-topic", source.topic));
+    card.appendChild(top);
 
-    var header = createElement("div", "source-card-header");
-    var faqBadge = createElement("span", "source-faq-id", source.faq_id);
-    var topicTag = createElement("span", "source-topic-tag", source.topic);
-    header.appendChild(faqBadge);
-    header.appendChild(topicTag);
-    card.appendChild(header);
+    if (source.question) card.appendChild(el("div", "source-q", source.question));
 
-    var qTitle = createElement("div", "source-question", source.question);
-    card.appendChild(qTitle);
-
-    var linksRow = createElement("div", "source-links-row");
-
-    // Official Source Link
-    var officialUrl = sanitizeUrl(source.url);
-    if (officialUrl) {
-      var link = createElement("a", "source-link-item", (source.name || "Official Source Portal") + " ↗");
-      link.href = officialUrl;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      linksRow.appendChild(link);
+    var links = el("div", "source-links");
+    var url = sanitizeUrl(source.url);
+    if (url) {
+      var a = el("a", "source-link", (source.name || "Official Source") + " ↗");
+      a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer";
+      links.appendChild(a);
     } else if (source.name) {
-      linksRow.appendChild(createElement("span", "source-topic-tag", "Authority: " + source.name));
+      links.appendChild(el("span", "source-topic", "Source: " + source.name));
+    } else {
+      links.appendChild(el("span", "source-topic", "No external source URL available"));
     }
 
-    // Additional URL Link
     var addUrl = sanitizeUrl(source.additional_url);
     if (addUrl) {
-      var addLink = createElement("a", "source-link-item", "Secondary Reference ↗");
-      addLink.href = addUrl;
-      addLink.target = "_blank";
-      addLink.rel = "noopener noreferrer";
-      linksRow.appendChild(addLink);
+      var a2 = el("a", "source-link", "Secondary Reference ↗");
+      a2.href = addUrl; a2.target = "_blank"; a2.rel = "noopener noreferrer";
+      links.appendChild(a2);
     }
-
-    if (linksRow.children.length > 0) {
-      card.appendChild(linksRow);
-    }
-
+    card.appendChild(links);
     return card;
   }
 
-  // Render Bot Message
   function renderBotBubble(data, time) {
-    var group = createElement("div", "msg-group bot");
+    var row = el("div", "msg-row bot");
+    var avatar = el("div", "msg-avatar");
+    avatar.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>';
+    row.appendChild(avatar);
 
-    var stateClass = "";
-    if (data.isError) stateClass = " error-state";
-    else if (data.status === "safety_warning" || data.status === "unsupported_compliance") stateClass = " warning-state";
+    var col = el("div", "msg-body-col");
+    var metaLine = el("div", "msg-meta-line");
+    metaLine.appendChild(el("strong", "", "Compliance Assistant"));
+    metaLine.appendChild(el("span", "", time));
+    col.appendChild(metaLine);
 
-    var bubble = createElement("div", "bubble" + stateClass);
-    // Render formatted structured markdown HTML
-    bubble.innerHTML = formatMarkdown(data.answer);
-    group.appendChild(bubble);
+    var cls = "bubble";
+    if (data.isError) cls += " error-state";
+    else if (data.status === "safety_warning" || data.status === "unsupported_compliance") cls += " warning-state";
 
-    // Meta section: Confidence & Sources
-    var hasSources = (data.sources && data.sources.length > 0) || data.source;
-    var hasSuggestions = (data.suggestions && data.suggestions.length > 0);
+    var bubble = el("div", cls);
+    var content = el("div");
+    content.innerHTML = formatMarkdown(data.answer);
+    bubble.appendChild(content);
 
-    if (hasSources || hasSuggestions || data.confidence) {
-      var metaBox = createElement("div", "response-meta");
+    if (!data.isError && data.answer) {
+      var bar = el("div", "bubble-actions");
+      var copyBtn = el("button", "btn-copy", "Copy answer");
+      copyBtn.type = "button";
+      copyBtn.addEventListener("click", function() {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(data.answer).then(function() {
+            showToast("Answer copied to clipboard.");
+          }).catch(function() {});
+        }
+      });
+      bar.appendChild(copyBtn);
+      bubble.appendChild(bar);
+    }
+    col.appendChild(bubble);
 
-      // Badges Row
-      var badgesRow = createElement("div", "meta-badges-row");
+    var sources = data.sources && data.sources.length > 0 ? data.sources : (data.source ? [data.source] : []);
+    var suggestions = data.suggestions || [];
+
+    if (sources.length > 0 || suggestions.length > 0 || data.confidence) {
+      var meta = el("div", "response-meta");
+      var badges = el("div", "badges-row");
 
       if (data.confidence) {
-        var conf = data.confidence.toLowerCase();
-        var confBadge = createElement(
-          "span",
-          "confidence-badge " + (conf === "high" ? "high" : (conf === "medium" ? "medium" : "low")),
-          "Confidence: " + data.confidence
-        );
-        badgesRow.appendChild(confBadge);
+        var c = data.confidence.toLowerCase();
+        badges.appendChild(el("span", "confidence-badge " + (c === "high" ? "high" : (c === "medium" ? "medium" : "low")), "Confidence: " + data.confidence));
       }
 
       if (data.case_type) {
-        var caseLabels = {
+        var map = {
           "direct_faq_match": "Direct FAQ Match",
           "related_faq_match": "Related Concept",
           "multi_faq_match": "Multi-FAQ Synthesis",
           "broad_compliance": "Broad Compliance",
           "extended_regulatory_guidance": "Authoritative Statutory Guidance",
           "compliance_unsupported": "Limited KB Coverage",
-          "unrelated_question": "General Policy",
+          "unrelated_question": "Out of Scope",
           "pii_detected": "Privacy Alert"
         };
-        var isStatutory = data.case_type === "extended_regulatory_guidance";
-        var labelText = caseLabels[data.case_type] || data.case_type.replace(/_/g, " ");
-        var caseBadge = createElement("span", "case-type-badge" + (isStatutory ? " statutory" : ""), labelText);
-        badgesRow.appendChild(caseBadge);
+        badges.appendChild(el("span", "case-badge" + (data.case_type === "extended_regulatory_guidance" ? " statutory" : ""), map[data.case_type] || data.case_type.replace(/_/g, " ")));
+      }
+      if (badges.children.length > 0) meta.appendChild(badges);
+
+      if (sources.length > 0) {
+        var panel = el("div", "sources-panel");
+        panel.appendChild(el("div", "sources-title", "Verified Sources & References"));
+        var list = el("div", "sources-list");
+        sources.forEach(function(s) { list.appendChild(buildSourceCard(s)); });
+        panel.appendChild(list);
+        meta.appendChild(panel);
       }
 
-      if (badgesRow.children.length > 0) {
-        metaBox.appendChild(badgesRow);
-      }
-
-      // Render Multiple Sources
-      var sourcesToRender = data.sources && data.sources.length > 0
-        ? data.sources
-        : (data.source ? [data.source] : []);
-
-      if (sourcesToRender.length > 0) {
-        var sourcesBox = createElement("div", "sources-container");
-        sourcesToRender.forEach(function(s) {
-          sourcesBox.appendChild(buildSourceCard(s));
-        });
-        metaBox.appendChild(sourcesBox);
-      }
-
-      // Render Suggestion Chips
-      if (hasSuggestions) {
-        var chipsBox = createElement("div", "chips-group");
-        data.suggestions.forEach(function(sug) {
-          var chip = createElement("button", "suggestion-chip", sug);
+      if (suggestions.length > 0) {
+        var chips = el("div", "chips-group");
+        suggestions.forEach(function(sug) {
+          var chip = el("button", "suggestion-chip", sug);
           chip.type = "button";
-          chip.addEventListener("click", function() {
-            submitQuestion(sug);
-          });
-          chipsBox.appendChild(chip);
+          chip.addEventListener("click", function() { submitQuestion(sug); });
+          chips.appendChild(chip);
         });
-        metaBox.appendChild(chipsBox);
+        meta.appendChild(chips);
       }
 
-      group.appendChild(metaBox);
+      col.appendChild(meta);
     }
 
-    group.appendChild(createElement("div", "timestamp", time));
-    chatArea.appendChild(group);
+    row.appendChild(col);
+    chatArea.appendChild(row);
   }
 
-  function showTypingIndicator() {
-    var group = createElement("div", "msg-group bot");
-    group.id = "typingIndicator";
-    var box = createElement("div", "bubble typing-box");
-    box.appendChild(createElement("span"));
-    box.appendChild(createElement("span"));
-    box.appendChild(createElement("span"));
-    group.appendChild(box);
-    chatArea.appendChild(group);
+  function showTyping() {
+    var row = el("div", "msg-row bot");
+    row.id = "typingIndicator";
+    var avatar = el("div", "msg-avatar");
+    avatar.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>';
+    row.appendChild(avatar);
+
+    var col = el("div", "msg-body-col");
+    var box = el("div", "bubble typing-box");
+    box.appendChild(el("span"));
+    box.appendChild(el("span"));
+    box.appendChild(el("span"));
+    col.appendChild(box);
+    row.appendChild(col);
+    chatArea.appendChild(row);
     scrollToBottom();
   }
 
-  function hideTypingIndicator() {
-    var el = document.getElementById("typingIndicator");
-    if (el) el.remove();
+  function hideTyping() {
+    var t = document.getElementById("typingIndicator");
+    if (t) t.remove();
   }
 
-  // Ask Question Workflow
-  async function submitQuestion(questionText) {
-    var query = (questionText || "").trim();
+  async function submitQuestion(text) {
+    var query = (text || "").trim();
     if (isBusy) return;
-    if (!query) {
-      showToast("Please enter a compliance question.");
-      return;
-    }
-    if (query.length > 500) {
-      showToast("Question is too long (maximum 500 characters).");
-      return;
-    }
+    if (!query) { showToast("Please enter a compliance question."); return; }
+    if (query.length > 500) { showToast("Question is too long (max 500 characters)."); return; }
 
+    closeMobileSidebar();
     isBusy = true;
     sendBtn.disabled = true;
     userInput.value = "";
     hideWelcome();
 
-    var userTime = getTimestamp();
-    renderUserBubble(query, userTime);
-    conversationHistory.push({ role: "user", text: query, time: userTime });
-    showTypingIndicator();
+    var uTime = getTimestamp();
+    renderUserBubble(query, uTime);
+    conversationHistory.push({ role: "user", text: query, time: uTime });
+    showTyping();
 
     var botEntry;
     try {
       var controller = new AbortController();
-      var timeoutId = setTimeout(function() { controller.abort(); }, 40000);
-
-      // Pass conversation history (last 6 turns) for contextual resolution
+      var timer = setTimeout(function() { controller.abort(); }, 40000);
       var historyPayload = conversationHistory.slice(-6).map(function(item) {
         return { role: item.role, text: item.text || (item.data && item.data.answer) || "" };
       });
 
-      var response = await fetch("/api/chat", {
+      var res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: query, history: historyPayload }),
         signal: controller.signal
       });
-      clearTimeout(timeoutId);
+      clearTimeout(timer);
 
-      var payload = await response.json().catch(function() { return null; });
-
-      if (!response.ok || !payload) {
-        var errDetail = (payload && payload.detail) ? payload.detail : "Unable to process compliance inquiry. Please try again.";
-        botEntry = {
-          status: "error",
-          answer: errDetail,
-          sources: [],
-          confidence: "low",
-          score: 0.0,
-          case_type: "error",
-          suggestions: [],
-          isError: true
-        };
-        showToast(errDetail);
+      var payload = await res.json().catch(function() { return null; });
+      if (!res.ok || !payload) {
+        var msg = (payload && payload.detail) ? payload.detail : "Unable to process compliance inquiry.";
+        botEntry = { status: "error", answer: msg, sources: [], confidence: "low", case_type: "error", suggestions: [], isError: true };
+        showToast(msg);
       } else {
         botEntry = {
           status: payload.status,
@@ -1341,34 +1584,22 @@
           sources: payload.sources || (payload.source ? [payload.source] : []),
           source: payload.source,
           confidence: payload.confidence,
-          score: payload.score,
           case_type: payload.case_type,
           suggestions: payload.suggestions || [],
           isError: false
         };
       }
-    } catch(err) {
-      var errorMsg = (err && err.name === "AbortError")
-        ? "The request timed out. Please check your network or try again."
-        : "Failed to connect to the backend server. Please verify it is running.";
-      botEntry = {
-        status: "network_error",
-        answer: errorMsg,
-        sources: [],
-        confidence: "low",
-        score: 0.0,
-        case_type: "network_error",
-        suggestions: [],
-        isError: true
-      };
-      showToast(errorMsg);
+    } catch (err) {
+      var errMsg = (err && err.name === "AbortError") ? "Request timed out. Please try again." : "Failed to connect to the backend server.";
+      botEntry = { status: "network_error", answer: errMsg, sources: [], confidence: "low", case_type: "network_error", suggestions: [], isError: true };
+      showToast(errMsg);
     }
 
-    hideTypingIndicator();
-    var botTime = getTimestamp();
-    renderBotBubble(botEntry, botTime);
-    conversationHistory.push({ role: "bot", data: botEntry, time: botTime });
-    saveSessionHistory();
+    hideTyping();
+    var bTime = getTimestamp();
+    renderBotBubble(botEntry, bTime);
+    conversationHistory.push({ role: "bot", data: botEntry, time: bTime });
+    saveSession();
     scrollToBottom();
 
     isBusy = false;
@@ -1378,12 +1609,12 @@
 
   function clearConversation() {
     conversationHistory = [];
-    try { sessionStorage.removeItem(SESSION_STORAGE_KEY); } catch(e) {}
-    var children = Array.from(chatArea.children);
-    children.forEach(function(child) {
+    try { sessionStorage.removeItem(SESSION_STORAGE_KEY); } catch (e) {}
+    Array.from(chatArea.children).forEach(function(child) {
       if (child !== welcomeSection) child.remove();
     });
     if (welcomeSection) welcomeSection.style.display = "";
+    closeMobileSidebar();
     showToast("Conversation cleared.");
   }
 
@@ -1391,71 +1622,66 @@
     try {
       var saved = sessionStorage.getItem(SESSION_STORAGE_KEY);
       if (saved) conversationHistory = JSON.parse(saved);
-    } catch(e) {
-      conversationHistory = [];
-    }
+    } catch (e) { conversationHistory = []; }
     if (!Array.isArray(conversationHistory)) conversationHistory = [];
 
     if (conversationHistory.length > 0) {
       hideWelcome();
       conversationHistory.forEach(function(turn) {
-        if (turn.role === "user") {
-          renderUserBubble(turn.text, turn.time);
-        } else if (turn.role === "bot" && turn.data) {
-          renderBotBubble(turn.data, turn.time);
-        }
+        if (turn.role === "user") renderUserBubble(turn.text, turn.time);
+        else if (turn.role === "bot" && turn.data) renderBotBubble(turn.data, turn.time);
       });
       scrollToBottom();
     }
   }
 
-  async function checkSystemHealth() {
+  async function checkHealth() {
     try {
       var res = await fetch("/api/health");
       var data = await res.json();
-      var isReady = data.faq_loaded;
-      if (statusDot) statusDot.className = "status-dot " + (isReady ? "online" : "offline");
-      if (statusText) statusText.textContent = data.groq_configured ? "AI Online · Ready" : "KB Ready (Offline Mode)";
-      var countText = document.getElementById("faqCountText");
-      if (countText) {
-        countText.textContent = (data.faq_count || 0) + " FAQs";
-      } else if (faqCountPill) {
-        faqCountPill.textContent = (data.faq_count || 0) + " FAQs";
-      }
-    } catch(err) {
-      if (statusDot) statusDot.className = "status-dot offline";
-      if (statusText) statusText.textContent = "Server Offline";
-      var countText = document.getElementById("faqCountText");
-      if (countText) countText.textContent = "Offline";
+      var ok = !!data.faq_loaded;
+      var statusLabel = data.groq_configured ? "AI Online" : "KB Ready";
+      var countLabel = (data.faq_count || 0) + " FAQs";
+
+      statusDot.className = "status-dot " + (ok ? "online" : "offline");
+      statusText.textContent = statusLabel;
+      headerStatusPill.classList.toggle("offline", !ok);
+      faqCountText.textContent = countLabel;
+
+      sidebarStatusDot.className = "status-dot " + (ok ? "online" : "offline");
+      sidebarStatusText.textContent = statusLabel;
+      sidebarFaqCount.textContent = countLabel;
+    } catch (e) {
+      statusDot.className = "status-dot offline";
+      statusText.textContent = "Offline";
+      headerStatusPill.classList.add("offline");
+      faqCountText.textContent = "Offline";
+
+      sidebarStatusDot.className = "status-dot offline";
+      sidebarStatusText.textContent = "Offline";
+      sidebarFaqCount.textContent = "Offline";
     }
   }
 
-  // Event Listeners
-  sendBtn.addEventListener("click", function() {
-    submitQuestion(userInput.value);
-  });
-
+  menuToggleBtn.addEventListener("click", toggleSidebar);
+  sidebarBackdrop.addEventListener("click", closeMobileSidebar);
+  sendBtn.addEventListener("click", function() { submitQuestion(userInput.value); });
   userInput.addEventListener("keydown", function(e) {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      submitQuestion(userInput.value);
-    }
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); submitQuestion(userInput.value); }
   });
-
   clearBtn.addEventListener("click", clearConversation);
+  sidebarNewChatBtn.addEventListener("click", clearConversation);
 
-  // Category Cards clicks
-  document.querySelectorAll(".category-card").forEach(function(card) {
-    card.addEventListener("click", function() {
-      var query = card.getAttribute("data-query");
-      if (query) submitQuestion(query);
+  document.querySelectorAll(".category-card, .nav-item-btn, .example-pill").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      var q = btn.getAttribute("data-query");
+      if (q) submitQuestion(q);
     });
   });
 
-  // Initialization
   restoreSession();
-  checkSystemHealth();
-  setInterval(checkSystemHealth, 30000);
+  checkHealth();
+  setInterval(checkHealth, 30000);
 })();
 </script>
 </body>
