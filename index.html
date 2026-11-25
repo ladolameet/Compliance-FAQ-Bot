@@ -25,6 +25,10 @@
       --amber-bg: #fffbeb;
       --rose: #e11d48;
       --rose-bg: #fff1f2;
+      --indigo: #4f46e5;
+      --indigo-bg: #eef2ff;
+      --cyan: #0891b2;
+      --cyan-bg: #ecfeff;
       --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
       --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
       --shadow-lg: 0 10px 15px -3px rgba(11, 31, 68, 0.1), 0 4px 6px -4px rgba(11, 31, 68, 0.08);
@@ -61,7 +65,7 @@
 
     /* Top Navigation Header */
     header {
-      background: var(--navy);
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
       color: var(--white);
       padding: 14px 24px;
       padding-top: max(14px, env(safe-area-inset-top));
@@ -85,12 +89,12 @@
       width: 44px;
       height: 44px;
       border-radius: var(--radius-md);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(255, 255, 255, 0.1));
       border: 1px solid rgba(255, 255, 255, 0.2);
       display: grid;
       place-items: center;
       flex: none;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     .brand-meta h1 {
@@ -208,24 +212,24 @@
     .welcome-container {
       margin: auto auto;
       text-align: center;
-      max-width: 720px;
+      max-width: 760px;
       padding: 10px 0 20px;
     }
 
     .welcome-icon-box {
-      width: 60px;
-      height: 60px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--navy-dark), var(--blue));
       display: grid;
       place-items: center;
       margin: 0 auto 16px;
-      box-shadow: var(--shadow-md);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
       color: var(--white);
     }
 
     .welcome-container h2 {
-      font-size: 1.45rem;
+      font-size: 1.5rem;
       font-weight: 750;
       color: var(--navy);
       letter-spacing: -0.02em;
@@ -233,12 +237,13 @@
     }
 
     .welcome-container p.welcome-desc {
-      font-size: 0.92rem;
+      font-size: 0.94rem;
       color: var(--ink-muted);
       margin-bottom: 24px;
-      max-width: 540px;
+      max-width: 580px;
       margin-left: auto;
       margin-right: auto;
+      line-height: 1.5;
     }
 
     /* 6 Suggested Category Cards */
@@ -253,29 +258,46 @@
       background: var(--white);
       border: 1px solid var(--line);
       border-radius: var(--radius-md);
-      padding: 14px 16px;
+      padding: 15px 16px;
       cursor: pointer;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
       box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
     }
     .category-card:hover {
       border-color: var(--blue);
-      box-shadow: var(--shadow-md);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
       transform: translateY(-2px);
       background: var(--blue-soft);
     }
 
-    .card-title-row {
+    .card-top-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
+    .card-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .tag-gst { background: #dbeafe; color: #1e40af; }
+    .tag-tds { background: #dcfce7; color: #166534; }
+    .tag-mca { background: #fef3c7; color: #92400e; }
+    .tag-kyc { background: #f3e8ff; color: #6b21a8; }
+    .tag-ins { background: #cffafe; color: #155e75; }
+    .tag-gen { background: #f1f5f9; color: #334155; }
+
     .category-card h3 {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 650;
       color: var(--navy);
     }
@@ -283,7 +305,7 @@
     .category-card p {
       font-size: 0.78rem;
       color: var(--ink-muted);
-      line-height: 1.35;
+      line-height: 1.4;
     }
 
     /* Message Bubbles */
@@ -302,11 +324,11 @@
     .msg-group.bot { align-items: flex-start; }
 
     .bubble {
-      max-width: 84%;
-      padding: 14px 18px;
+      max-width: 86%;
+      padding: 16px 20px;
       border-radius: var(--radius-lg);
       font-size: 0.94rem;
-      line-height: 1.6;
+      line-height: 1.65;
       word-break: break-word;
       overflow-wrap: anywhere;
       box-shadow: var(--shadow-sm);
@@ -335,6 +357,60 @@
       background: #fef2f2;
       border-color: #fecaca;
       color: #991b1b;
+    }
+
+    /* Structured Markdown Typography in Bot Bubbles */
+    .bubble .resp-p {
+      margin-bottom: 12px;
+    }
+    .bubble .resp-p:last-child {
+      margin-bottom: 0;
+    }
+
+    .bubble .resp-heading {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 14px 0 8px;
+      letter-spacing: -0.01em;
+      border-bottom: 1px solid var(--line-subtle);
+      padding-bottom: 4px;
+    }
+    .bubble .resp-heading:first-child {
+      margin-top: 0;
+    }
+
+    .bubble .resp-list {
+      margin: 8px 0 14px 22px;
+      padding: 0;
+    }
+    .bubble .resp-list li {
+      margin-bottom: 6px;
+      line-height: 1.55;
+    }
+    .bubble .resp-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .bubble strong {
+      color: var(--navy);
+      font-weight: 650;
+    }
+
+    /* Citation Tag */
+    .cite-pill {
+      display: inline-block;
+      background: var(--blue-soft);
+      color: var(--blue);
+      border: 1px solid var(--blue-border);
+      border-radius: 4px;
+      padding: 1px 7px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin: 0 3px;
+      vertical-align: middle;
+      box-shadow: 0 1px 2px rgba(37, 99, 235, 0.06);
     }
 
     .timestamp {
@@ -398,6 +474,11 @@
       background: var(--blue-soft);
       color: var(--blue);
       border: 1px solid var(--blue-border);
+    }
+    .case-type-badge.statutory {
+      background: var(--indigo-bg);
+      color: var(--indigo);
+      border-color: #c7d2fe;
     }
 
     /* Source Cards (Multiple Source Citations) */
@@ -508,7 +589,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 12px 18px;
+      padding: 14px 20px;
     }
     .typing-box span {
       width: 7px;
@@ -640,7 +721,7 @@
         grid-template-columns: 1fr;
       }
       .bubble, .response-meta {
-        max-width: 92%;
+        max-width: 94%;
       }
       footer.chat-footer {
         padding: 10px 16px;
@@ -711,57 +792,63 @@
       </div>
       <h2>Welcome to Compliance FAQ Assistant</h2>
       <p class="welcome-desc">
-        Ask me anything about GST, TDS, company filings, KYC and regulatory compliance.
-        Select a category below or type your own question.
+        Ask me anything about GST, TDS, company filings, KYC, and regulatory compliance.
+        Click an interactive category card below or type any question into the chat.
       </p>
 
       <!-- 6 Suggestion Cards -->
       <div class="cards-grid">
         <div class="category-card" data-query="What are the turnover thresholds and criteria for mandatory GST registration?">
-          <div class="card-title-row">
-            <h3>GST Compliance</h3>
+          <div class="card-top-row">
+            <span class="card-tag tag-gst">GST</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
           </div>
+          <h3>GST Compliance</h3>
           <p>Registration thresholds, GSTR-1, GSTR-3B & Input Tax Credit</p>
         </div>
 
         <div class="category-card" data-query="What is TDS and how does deduction and quarterly deposit work?">
-          <div class="card-title-row">
-            <h3>TDS Compliance</h3>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          <div class="card-top-row">
+            <span class="card-tag tag-tds">TDS</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
           </div>
-          <p>TAN requirements, Form 16/16A, Form 26AS, AIS & returns</p>
+          <h3>TDS Compliance</h3>
+          <p>Deduction rules, monthly deposits (ITNS 281), returns & Form 16/16A</p>
         </div>
 
         <div class="category-card" data-query="What are ROC annual statutory filings such as Form AOC-4 and MGT-7?">
-          <div class="card-title-row">
-            <h3>Company Filings</h3>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          <div class="card-top-row">
+            <span class="card-tag tag-mca">MCA & ROC</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
           </div>
+          <h3>Company Filings</h3>
           <p>MCA21, SPICe+, DIN KYC, annual accounts & LLP forms</p>
         </div>
 
         <div class="category-card" data-query="What are Officially Valid Documents for KYC customer verification?">
-          <div class="card-title-row">
-            <h3>KYC Documentation</h3>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          <div class="card-top-row">
+            <span class="card-tag tag-kyc">KYC & CDD</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
           </div>
+          <h3>KYC Documentation</h3>
           <p>Customer Due Diligence (CDD), OVDs, UBO & 5-year retention</p>
         </div>
 
         <div class="category-card" data-query="What is Section 64VB of the Insurance Act regarding premium collection and risk assumption?">
-          <div class="card-title-row">
-            <h3>Insurance Compliance</h3>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          <div class="card-top-row">
+            <span class="card-tag tag-ins">Insurance</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
           </div>
+          <h3>Insurance Compliance</h3>
           <p>Reinsurance treaties, Section 64VB, claims & solvency margins</p>
         </div>
 
         <div class="category-card" data-query="What are the core pillars of corporate governance and internal controls?">
-          <div class="card-title-row">
-            <h3>General Regulatory</h3>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          <div class="card-top-row">
+            <span class="card-tag tag-gen">Governance</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#334155" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
           </div>
+          <h3>General Regulatory</h3>
           <p>Audit trails, risk management, SOPs & whistleblower policy</p>
         </div>
       </div>
@@ -776,7 +863,7 @@
           type="text"
           id="userInput"
           class="composer-input"
-          placeholder="Ask a compliance question (e.g. 'Explain Input Tax Credit conditions')..."
+          placeholder="Ask a compliance question (e.g. 'What is TDS and how does deduction work?')..."
           maxlength="500"
           autocomplete="off"
           aria-label="Compliance question"
@@ -790,7 +877,7 @@
       </button>
     </div>
     <p class="footer-disclaimer">
-      Answers are strictly grounded in the verified Compliance FAQ knowledge base. For case-specific legal or tax decisions, please consult a qualified compliance professional.
+      Answers are strictly grounded in verified compliance statutes and knowledge records. For case-specific legal or tax decisions, please consult a qualified compliance professional.
     </p>
   </footer>
 </div>
@@ -860,6 +947,91 @@
     if (welcomeSection) welcomeSection.style.display = "none";
   }
 
+  // Structured Markdown to Safe HTML Formatter
+  function formatMarkdown(rawText) {
+    if (!rawText) return "";
+
+    // 1. Sanitize raw HTML tags to prevent XSS
+    var text = rawText
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+
+    // 2. Bold text formatting: **text** -> <strong>text</strong>
+    text = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
+    // 3. Citation tags: [GST-001] -> <span class="cite-pill">GST-001</span>
+    text = text.replace(/\[([A-Z0-9\-]+)\]/g, '<span class="cite-pill">$1</span>');
+
+    // 4. Parse block elements (headings, bullet lists, numbered lists, paragraphs)
+    var lines = text.split("\n");
+    var htmlBlocks = [];
+    var inList = false;
+    var listType = ""; // 'ul' or 'ol'
+
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].trim();
+
+      if (!line) {
+        if (inList) {
+          htmlBlocks.push(listType === "ul" ? "</ul>" : "</ol>");
+          inList = false;
+        }
+        continue;
+      }
+
+      // Check Heading (### or ##)
+      var headingMatch = line.match(/^#{1,4}\s+(.*)$/);
+      if (headingMatch) {
+        if (inList) {
+          htmlBlocks.push(listType === "ul" ? "</ul>" : "</ol>");
+          inList = false;
+        }
+        htmlBlocks.push('<h4 class="resp-heading">' + headingMatch[1] + "</h4>");
+        continue;
+      }
+
+      // Check Bullet List item (* or - or •)
+      var bulletMatch = line.match(/^[\*\-\•]\s+(.*)$/);
+      if (bulletMatch) {
+        if (!inList || listType !== "ul") {
+          if (inList) htmlBlocks.push(listType === "ul" ? "</ul>" : "</ol>");
+          htmlBlocks.push('<ul class="resp-list">');
+          inList = true;
+          listType = "ul";
+        }
+        htmlBlocks.push("<li>" + bulletMatch[1] + "</li>");
+        continue;
+      }
+
+      // Check Numbered List item (1. or 2.)
+      var numMatch = line.match(/^(\d+)[\.\)]\s+(.*)$/);
+      if (numMatch) {
+        if (!inList || listType !== "ol") {
+          if (inList) htmlBlocks.push(listType === "ul" ? "</ul>" : "</ol>");
+          htmlBlocks.push('<ol class="resp-list">');
+          inList = true;
+          listType = "ol";
+        }
+        htmlBlocks.push("<li>" + numMatch[2] + "</li>");
+        continue;
+      }
+
+      // Regular paragraph line
+      if (inList) {
+        htmlBlocks.push(listType === "ul" ? "</ul>" : "</ol>");
+        inList = false;
+      }
+      htmlBlocks.push('<p class="resp-p">' + line + "</p>");
+    }
+
+    if (inList) {
+      htmlBlocks.push(listType === "ul" ? "</ul>" : "</ol>");
+    }
+
+    return htmlBlocks.join("");
+  }
+
   // Render User Message
   function renderUserBubble(text, time) {
     var group = createElement("div", "msg-group user");
@@ -887,19 +1059,19 @@
     // Official Source Link
     var officialUrl = sanitizeUrl(source.url);
     if (officialUrl) {
-      var link = createElement("a", "source-link-item", (source.name || "Official Source") + " ↗");
+      var link = createElement("a", "source-link-item", (source.name || "Official Source Portal") + " ↗");
       link.href = officialUrl;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
       linksRow.appendChild(link);
     } else if (source.name) {
-      linksRow.appendChild(createElement("span", "source-topic-tag", "Source: " + source.name));
+      linksRow.appendChild(createElement("span", "source-topic-tag", "Authority: " + source.name));
     }
 
     // Additional URL Link
     var addUrl = sanitizeUrl(source.additional_url);
     if (addUrl) {
-      var addLink = createElement("a", "source-link-item", "Additional Reference ↗");
+      var addLink = createElement("a", "source-link-item", "Secondary Reference ↗");
       addLink.href = addUrl;
       addLink.target = "_blank";
       addLink.rel = "noopener noreferrer";
@@ -921,7 +1093,9 @@
     if (data.isError) stateClass = " error-state";
     else if (data.status === "safety_warning" || data.status === "unsupported_compliance") stateClass = " warning-state";
 
-    var bubble = createElement("div", "bubble" + stateClass, data.answer);
+    var bubble = createElement("div", "bubble" + stateClass);
+    // Render formatted structured markdown HTML
+    bubble.innerHTML = formatMarkdown(data.answer);
     group.appendChild(bubble);
 
     // Meta section: Confidence & Sources
@@ -950,12 +1124,14 @@
           "related_faq_match": "Related Concept",
           "multi_faq_match": "Multi-FAQ Synthesis",
           "broad_compliance": "Broad Compliance",
+          "extended_regulatory_guidance": "Authoritative Statutory Guidance",
           "compliance_unsupported": "Limited KB Coverage",
           "unrelated_question": "General Policy",
           "pii_detected": "Privacy Alert"
         };
+        var isStatutory = data.case_type === "extended_regulatory_guidance";
         var labelText = caseLabels[data.case_type] || data.case_type.replace(/_/g, " ");
-        var caseBadge = createElement("span", "case-type-badge", labelText);
+        var caseBadge = createElement("span", "case-type-badge" + (isStatutory ? " statutory" : ""), labelText);
         badgesRow.appendChild(caseBadge);
       }
 
