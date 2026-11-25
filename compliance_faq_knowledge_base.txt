@@ -104,7 +104,7 @@ Source URL: https://www.gst.gov.in/
 FAQ ID: TDS-001
 Topic: TDS Fundamentals
 Question: What is Tax Deducted at Source (TDS) and what is its objective?
-Keywords: tds, tax deducted at source, income tax act, direct tax, withholding tax, advance tax collection, tax evasion prevention
+Keywords: tds, tax deducted at source, deduction, tds deduction, income tax act, direct tax, withholding tax, advance tax collection, tax evasion prevention
 Answer: Tax Deducted at Source (TDS) is a direct taxation mechanism under the Indian Income Tax Act, 1961, whereby the person or entity making specified payments (such as salary, professional fees, contractor payments, commission, rent, interest) is legally required to deduct a predetermined percentage of tax before disbursing the net payment to the recipient (payee). The deducted amount is remitted directly to the Central Government on behalf of the payee. The objective of TDS is to collect income tax at the source of income generation ("pay as you earn"), maintain a regular inflow of cash to the national exchequer, widen the tax base, and establish a digital audit trail to prevent tax evasion.
 Source Name: Income Tax Department of India
 Source URL: https://www.incometax.gov.in/
@@ -132,7 +132,7 @@ Additional Source URL: https://www.protean-tinpan.com/
 FAQ ID: TDS-004
 Topic: TDS Deposits
 Question: How and when must deducted TDS be deposited with the Central Government?
-Keywords: tds deposit, due date, 7th of next month, challan itns 281, bsr code, tin nsdl, late payment interest, section 201
+Keywords: tds deposit, deposit, monthly deposit, quarterly deposit, due date, 7th of next month, challan itns 281, bsr code, tin nsdl, late payment interest, section 201
 Answer: TDS deducted during any calendar month must be deposited with the Central Government on or before the 7th day of the immediately following month (e.g., TDS deducted in October must be paid by November 7th). An exception exists for the month of March, where the payment deadline is extended to April 30th. Payments are made electronically through the Income Tax e-filing portal using Challan ITNS 281. Challans generate a Challan Identification Number (CIN) comprising the BSR code of the receiving bank branch, payment date, and challan serial number. Failure to deposit deducted tax attracts mandatory interest at 1.5% per month (or part of a month) under Section 201(1A) from the date of deduction to the date of actual deposit.
 Source Name: Income Tax Department of India
 Source URL: https://www.incometax.gov.in/
@@ -141,7 +141,7 @@ Source URL: https://www.incometax.gov.in/
 FAQ ID: TDS-005
 Topic: TDS Returns
 Question: What are quarterly TDS returns and what forms must be filed?
-Keywords: tds returns, quarterly return, form 24q, form 26q, form 27q, form 27eq, tcs, section 200, late filing fee, section 234e
+Keywords: tds returns, quarterly return, quarterly deposit, quarterly filing, form 24q, form 26q, form 27q, form 27eq, tcs, section 200, late filing fee, section 234e
 Answer: Every entity that has deducted TDS must file a quarterly TDS statement with the Income Tax Department under Section 200(3). The statutory forms are: Form 24Q for TDS on salary payments; Form 26Q for TDS on non-salary payments made to resident Indians (contractors, rent, professionals, interest); Form 27Q for payments made to non-residents; and Form 27EQ for Tax Collected at Source (TCS). The quarterly filing due dates are: Q1 (April-June) due by July 31; Q2 (July-September) due by October 31; Q3 (October-December) due by January 31; and Q4 (January-March) due by May 31. Late filing of TDS returns attracts a non-negotiable fee of Rs 200 per day under Section 234E until the return is submitted, capped at the total TDS amount.
 Source Name: TRACES Portal (TDS Reconciliation Analysis and Correction Enabling System)
 Source URL: https://www.tdscpc.gov.in/
